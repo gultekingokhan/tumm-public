@@ -10,6 +10,11 @@ import Foundation
 
 public struct Currency {
     
-    let name: String
+    let symbol: String
+    let value: Double
     
+    init(symbol: String, value: Double) {
+        self.symbol = symbol
+        self.value = value
+    }
 }

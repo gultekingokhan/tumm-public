@@ -12,12 +12,23 @@ final class ConverterPresentation: NSObject {
     
     let base: String
     let date: String
-    let rates: [String: Double]
+    let rates: [Currency]
     
     init(base: String, date: String, rates: [String:Double]) {
         self.base = base
         self.date = date
-        self.rates = rates
+        
+        let symbols = [String](rates.keys)
+
+        var currencies: [Currency] = []
+        
+        for symbol in symbols {
+            if let value = rates[symbol]  {
+                let currency = Currency(symbol: symbol, value: value)
+                currencies.append(currency)
+            }
+        }
+        self.rates = currencies
         super.init()
     }
 }

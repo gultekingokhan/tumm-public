@@ -17,7 +17,7 @@ final class ConverterViewController: UIViewController {
         }
     }
     
-    var rates: [String:Double] = [:]
+    var rates: [Currency] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +34,7 @@ extension ConverterViewController: ConverterViewModelDelegate {
         case .showLoading(let isLoading):
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         case .showLatestRates(let presentation):
-            //print("rates: \(presentation.rates)")
             self.rates = presentation.rates
-            
-            
-            
             self.tableView.reloadData()
         }
     }
@@ -47,22 +43,17 @@ extension ConverterViewController: ConverterViewModelDelegate {
 extension ConverterViewController: UITableViewDataSource {
   
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rates.keys.count
+        return rates.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath)
+
+        let rate = rates[indexPath.row]
         
-        let keys = [String](rates.keys)
-        
-        let key: String = keys[indexPath.row]
-        cell.textLabel?.text = key
-        
-        if let value = rates[key] {
-            cell.detailTextLabel?.text = String(format: "%f", value)
-        } else {
-            cell.detailTextLabel?.text = "-"
-        }
+        cell.textLabel?.text = rate.symbol
+        cell.detailTextLabel?.text = String(rate.value)
+
         return cell
     }
 }

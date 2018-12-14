@@ -24,7 +24,7 @@ public class LatestRatesService: LatestRatesServiceProtocol {
     
     public func fetchLatestRates(base: String, completion: @escaping (Result<LatestRatesResponse>) -> Void) {
 
-        let params = ["base":base, "symbols": "USD,GBP"]
+        let params = ["base":base]
         
         ServiceManager.get(from: ServiceManager.makeURL(with: .latest), params: params) { (response) in
             
