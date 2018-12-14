@@ -22,10 +22,8 @@ protocol ServiceManagerProtocol {
 struct ServiceManager: ServiceManagerProtocol {
     
     static func get(from url: URL, params: [String:String]?, completion: @escaping (DataResponse<Data>) -> Void) {
-        print("URL: \(url)")
-        print("params: \(params ?? [:])")
         
-        request(url, method: .get, parameters: params, encoding: JSONEncoding.default, headers: Credentials.API.headers).responseData { (response) in
+        request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: Credentials.API.headers).responseData { (response) in
             completion(response)
         }
     }

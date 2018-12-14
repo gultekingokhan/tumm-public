@@ -10,7 +10,7 @@ import Foundation
 
 protocol ConverterViewModelProtocol {
     var delegate: ConverterViewModelDelegate? { get set }
-    func load()
+    func load(base: String)
 }
 
 enum ConverterViewModelOutput {

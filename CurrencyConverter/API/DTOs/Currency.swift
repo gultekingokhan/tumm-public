@@ -8,4 +8,8 @@
 
 import Foundation
 
-public struct Currency { }
+public struct Currency {
+    
+    let name: String
+    
+}

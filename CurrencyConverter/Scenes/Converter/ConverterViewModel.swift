@@ -18,11 +18,11 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         self.service = service
     }
     
-    func load() {
-        
+    func load(base: String) {
+
         notify(.showLoading(true))
-        // TODO: Don't forget to pass base currency
-        service.fetchLatestRates(base: "USD") { (result) in
+        
+        service.fetchLatestRates(base: base) { (result) in
             self.notify(.showLoading(false))
             
             switch result {
