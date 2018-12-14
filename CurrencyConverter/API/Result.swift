@@ -1,5 +1,5 @@
 //
-//  AppContainer.swift
+//  Result.swift
 //  CurrencyConverter
 //
 //  Created by Gokhan Gultekin on 13.12.2018.
@@ -8,10 +8,7 @@
 
 import Foundation
 
-let app = AppContainer()
-
-final class AppContainer {
-    
-    let router = AppRouter()
-    let latesRatesService = LatestRatesService()
+public enum Result<Value> {
+    case success(Value)
+    case failure(Error)
 }
