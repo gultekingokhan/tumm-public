@@ -24,6 +24,12 @@ final class ConverterViewController: UIViewController {
 
         viewModel.load(base: "SEK")
     }
+    
+    @IBAction func allCurrenciesButtonTapped(_ sender: Any) {
+        let viewController = CurrencyListBuilder.make()
+        present(viewController, animated: true, completion: nil)
+    }
+    
 }
 
 extension ConverterViewController: ConverterViewModelDelegate {

@@ -13,7 +13,7 @@ final class ConverterBuilder {
     static func make() -> ConverterViewController {
         let storyboard = UIStoryboard(name: "Converter", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ConverterViewController") as! ConverterViewController
-        viewController.viewModel = ConverterViewModel(service: app.latesRatesService)
+        viewController.viewModel = ConverterViewModel(service: app.latestRatesService)
         return viewController
     }
 }
