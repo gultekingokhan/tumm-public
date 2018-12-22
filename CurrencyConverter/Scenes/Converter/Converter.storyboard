@@ -52,28 +52,39 @@
                                     <outlet property="delegate" destination="jtd-bu-QOp" id="1MF-g8-Pyi"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ylq-If-2tX">
-                                <rect key="frame" x="139" y="81" width="96" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="All Currencies"/>
-                                <connections>
-                                    <action selector="allCurrenciesButtonTapped:" destination="jtd-bu-QOp" eventType="touchUpInside" id="4Dw-kg-y2h"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bDK-wk-ia8">
-                                <rect key="frame" x="139" y="156" width="97" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" keyboardType="ASCIICapableNumberPad"/>
-                            </textField>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lq4-P5-FBZ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="140"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tumm" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rB0-vo-iUE">
+                                        <rect key="frame" x="16" y="86.5" width="95.5" height="46.5"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="34"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Fm-Lr-ZbS">
+                                        <rect key="frame" x="336" y="28" width="28" height="28"/>
+                                        <state key="normal" image="settingsIcon"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.15686274509803921" green="0.19215686274509802" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="rB0-vo-iUE" secondAttribute="bottom" constant="7" id="0n5-gK-ZdG"/>
+                                    <constraint firstAttribute="height" constant="140" id="3qY-LG-9fC"/>
+                                    <constraint firstItem="rB0-vo-iUE" firstAttribute="leading" secondItem="Lq4-P5-FBZ" secondAttribute="leading" constant="16" id="7GP-91-fHP"/>
+                                    <constraint firstAttribute="trailing" secondItem="5Fm-Lr-ZbS" secondAttribute="trailing" constant="11" id="xNF-xG-3rJ"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.082352941176470587" green="0.10980392156862745" blue="0.19607843137254902" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="Lq4-P5-FBZ" firstAttribute="top" secondItem="a5Q-Gx-AhL" secondAttribute="top" id="LCY-s9-DTX"/>
                             <constraint firstItem="crm-e4-qui" firstAttribute="trailing" secondItem="2zK-ci-nJ0" secondAttribute="trailing" id="MmA-re-YGK"/>
                             <constraint firstItem="crm-e4-qui" firstAttribute="bottom" secondItem="2zK-ci-nJ0" secondAttribute="bottom" id="NeN-ak-gzA"/>
                             <constraint firstItem="crm-e4-qui" firstAttribute="leading" secondItem="2zK-ci-nJ0" secondAttribute="leading" id="RYk-0Q-EFv"/>
                             <constraint firstItem="crm-e4-qui" firstAttribute="top" secondItem="2zK-ci-nJ0" secondAttribute="top" constant="300" id="Tm5-J5-DyI"/>
+                            <constraint firstItem="Lq4-P5-FBZ" firstAttribute="leading" secondItem="2zK-ci-nJ0" secondAttribute="leading" id="WGK-pe-AoL"/>
+                            <constraint firstItem="2zK-ci-nJ0" firstAttribute="top" secondItem="5Fm-Lr-ZbS" secondAttribute="bottom" constant="-36" id="WfW-ry-Qbd"/>
+                            <constraint firstItem="Lq4-P5-FBZ" firstAttribute="trailing" secondItem="2zK-ci-nJ0" secondAttribute="trailing" id="eCo-R0-Y17"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="2zK-ci-nJ0"/>
                     </view>
@@ -86,4 +97,7 @@
             <point key="canvasLocation" x="212" y="129.98500749625188"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settingsIcon" width="28" height="28"/>
+    </resources>
 </document>

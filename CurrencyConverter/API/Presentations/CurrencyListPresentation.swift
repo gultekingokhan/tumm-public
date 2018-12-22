@@ -1,14 +1,14 @@
 //
-//  ConverterPresentation.swift
+//  CurrencyListPresentation.swift
 //  CurrencyConverter
 //
-//  Created by Gokhan Gultekin on 14.12.2018.
+//  Created by Gokhan Gultekin on 20.12.2018.
 //  Copyright © 2018 Gokhan Gultekin. All rights reserved.
 //
 
 import Foundation
 
-final class ConverterPresentation: NSObject {
+final class CurrencyListPresentation: NSObject {
     
     let base: String
     let date: String
@@ -19,10 +19,10 @@ final class ConverterPresentation: NSObject {
         self.date = date
         
         let symbols = [String](rates.keys)
-
+        
         var currencies: [Currency] = []
         var countries: [Country] = []
-        
+
         do {
             try ResourceLoader.loadCountries(success: { (response) in
                 
@@ -50,6 +50,7 @@ final class ConverterPresentation: NSObject {
                 currencies.append(currency)
             }
         }
+        
         self.rates = currencies
         super.init()
     }

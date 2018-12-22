@@ -11,6 +11,7 @@ import Foundation
 protocol ConverterViewModelProtocol {
     var delegate: ConverterViewModelDelegate? { get set }
     func load(base: String)
+    func addCurrency()
 }
 
 enum ConverterViewModelOutput {
@@ -18,6 +19,11 @@ enum ConverterViewModelOutput {
     case showLatestRates(ConverterPresentation)
 }
 
+enum ConverterViewRoute {
+    case currencyList(CurrencyListViewModelProtocol)
+}
+
 protocol ConverterViewModelDelegate: class {
     func handleViewModelOutput(_ output: ConverterViewModelOutput)
+    func navigate(to route: ConverterViewRoute)
 }

@@ -7,3 +7,21 @@
 //
 
 import Foundation
+
+protocol CurrencyListViewModelProtocol {
+    var delegate: CurrencyListViewModelDelegate? { get set }
+    func load(base: String)
+}
+
+enum CurrencyListViewModelOutput {
+    case showLoading(Bool)
+    case showLatestRates(CurrencyListPresentation)
+}
+
+enum CurrencyListViewRoute {
+    //case currencyList(CurrencyListViewModelProtocol)
+}
+
+protocol CurrencyListViewModelDelegate: class {
+    func handleViewModelOutput(_ output: CurrencyListViewModelOutput)
+}

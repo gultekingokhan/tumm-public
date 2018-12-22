@@ -14,4 +14,6 @@ final class AppContainer {
     
     let router = AppRouter()
     let latestRatesService = LatestRatesService()
+    let countriesService = CountriesService()
+
 }

@@ -40,4 +40,9 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         delegate?.handleViewModelOutput(output)
     }
     
+    func addCurrency() {
+        let viewModel = CurrencyListViewModel(service: service)
+        delegate?.navigate(to: .currencyList(viewModel))
+    }
+    
 }

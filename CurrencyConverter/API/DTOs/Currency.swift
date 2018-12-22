@@ -12,9 +12,11 @@ public struct Currency {
     
     let symbol: String
     let value: Double
+    let country: Country
     
-    init(symbol: String, value: Double) {
+    init(symbol: String, value: Double, country: Country) {
         self.symbol = symbol
         self.value = value
+        self.country = country
     }
 }

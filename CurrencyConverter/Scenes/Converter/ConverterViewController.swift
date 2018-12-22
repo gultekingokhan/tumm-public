@@ -44,10 +44,19 @@ extension ConverterViewController: ConverterViewModelDelegate {
             self.tableView.reloadData()
         }
     }
+    
+    func navigate(to route: ConverterViewRoute) {
+        let viewController = CurrencyListBuilder.make()
+        show(viewController, sender: self)
+    }
 }
 
 extension ConverterViewController: UITableViewDataSource {
   
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rates.count
     }
@@ -64,3 +73,10 @@ extension ConverterViewController: UITableViewDataSource {
     }
 }
 
+extension ConverterViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.addCurrency()
+    }
+}

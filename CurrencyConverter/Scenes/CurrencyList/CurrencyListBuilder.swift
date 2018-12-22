@@ -13,7 +13,7 @@ final class CurrencyListBuilder {
     static func make() -> CurrencyListViewController {
         let storyboard = UIStoryboard(name: "CurrencyList", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "CurrencyListViewController") as! CurrencyListViewController
-        // viewController.viewModel = ...
+        viewController.viewModel = CurrencyListViewModel(service: app.latestRatesService)
         return viewController
     }
 }

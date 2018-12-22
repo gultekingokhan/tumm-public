@@ -8,13 +8,13 @@
 
 import UIKit
 
-extension UIColor {
+public extension UIColor {
     
-    class var lightBackgroundColor: UIColor {
+    class var darkBackgroundColor: UIColor {
         return UIColor(red: 40/255, green: 49/255, blue: 75/255, alpha: 1.0)
     }
     
-    class var darkBackgroundColor: UIColor {
+    class var lightBackgroundColor: UIColor {
         return UIColor(red: 21/255, green: 28/255, blue: 50/255, alpha: 1.0)
     }
 
