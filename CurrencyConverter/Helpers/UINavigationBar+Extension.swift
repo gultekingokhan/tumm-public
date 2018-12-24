@@ -10,12 +10,12 @@ import UIKit
 
 extension UINavigationBar {
     
-    func customize() {
-        
-        self.prefersLargeTitles = true
-        self.barTintColor = UIColor.lightBackgroundColor
-        self.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        self.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-
+    func customize(supportsLargeTitle: Bool) {
+ 
+        self.isTranslucent = false
+        self.prefersLargeTitles = supportsLargeTitle
+        self.barTintColor = UIColor.darkBackgroundColor
+        self.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont(name: "Avenir-Book", size: 13)!]
+        self.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont(name: "Avenir-Heavy", size: 34)!]
     }
 }

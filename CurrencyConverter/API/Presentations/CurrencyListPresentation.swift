@@ -12,7 +12,7 @@ final class CurrencyListPresentation: NSObject {
     
     let base: String
     let date: String
-    let rates: [Currency]
+    let rates: Dictionary<String, [Currency]>
     
     init(base: String, date: String, rates: [String:Double]) {
         self.base = base
@@ -51,7 +51,8 @@ final class CurrencyListPresentation: NSObject {
             }
         }
         
-        self.rates = currencies
+        self.rates = Dictionary(grouping: currencies, by: { String($0.symbol.first!) })
+        
         super.init()
     }
 }

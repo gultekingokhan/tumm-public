@@ -17,14 +17,14 @@ final class CurrencyListViewController: UIViewController {
         }
     }
     
-    var rates: [Currency] = []
-    
+    var rates: Dictionary<String, [Currency]> = [:]
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        title = "Hello"
+        navigationController?.navigationBar.customize(supportsLargeTitle: false)
+        self.navigationController?.navigationBar.prefersLargeTitles = false
+
         viewModel.load(base: "SEK")
     }
     
@@ -57,20 +57,27 @@ extension CurrencyListViewController: CurrencyListViewModelDelegate {
 }
 
 extension CurrencyListViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let key = Array(rates.keys)[section]
+        return key
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return rates.keys.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rates.count
+        let keys: [String] = Array(rates.keys)
+        return rates[keys[section]]!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath)
         
-        let rate = rates[indexPath.row]
-        
+        let key = Array(rates.keys)[indexPath.section]
+        let rate = rates[key]![indexPath.row]
+
         cell.textLabel?.text = rate.symbol
         cell.detailTextLabel?.text = rate.country.name
         

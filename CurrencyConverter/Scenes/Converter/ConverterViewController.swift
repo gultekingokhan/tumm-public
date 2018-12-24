@@ -22,7 +22,7 @@ final class ConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationController?.navigationBar.customize()
+        navigationController?.navigationBar.customize(supportsLargeTitle: true)
         
         viewModel.load(base: "SEK")
     }
