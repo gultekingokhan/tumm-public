@@ -23,7 +23,7 @@ final class CurrencyListViewController: UIViewController {
         super.viewDidLoad()
         
         navigationController?.navigationBar.customize(supportsLargeTitle: false)
-        self.navigationController?.navigationBar.prefersLargeTitles = false
+        addDismissButton()
 
         viewModel.load(base: "SEK")
     }
@@ -58,11 +58,6 @@ extension CurrencyListViewController: CurrencyListViewModelDelegate {
 
 extension CurrencyListViewController: UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let key = Array(rates.keys)[section]
-        return key
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return rates.keys.count
     }
@@ -73,19 +68,26 @@ extension CurrencyListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as! CurrencyListCell
         
         let key = Array(rates.keys)[indexPath.section]
         let rate = rates[key]![indexPath.row]
 
-        cell.textLabel?.text = rate.symbol
-        cell.detailTextLabel?.text = rate.country.name
+        cell.symbolLabel.text = rate.symbol
+        cell.nameLabel.text = rate.country.name
         
         return cell
     }
 }
 
 extension CurrencyListViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = CurrencyListHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 28))
+        
+        view.titleLabel?.text = Array(rates.keys)[section]
+        return view
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)

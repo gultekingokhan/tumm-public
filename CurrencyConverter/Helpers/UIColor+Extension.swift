@@ -29,5 +29,9 @@ public extension UIColor {
     class var battleshipGrey: UIColor { // rgb 106 114 137
         return UIColor(red: 106/255, green: 114/255, blue: 137/255, alpha: 1.0)
     }
+    
+    class var rosyPink: UIColor { // rgb 204 95 197
+        return UIColor(red: 251/255, green: 108/255, blue: 124/255, alpha: 1.0)
+    }
 }
 
