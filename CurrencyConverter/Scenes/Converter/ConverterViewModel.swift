@@ -19,7 +19,7 @@ final class ConverterViewModel: ConverterViewModelProtocol {
     }
     
     func load(base: String) {
-
+        notify(.updateTitle("Tumm"))
         notify(.showLoading(true))
         
         service.fetchLatestRates(base: base) { (result) in

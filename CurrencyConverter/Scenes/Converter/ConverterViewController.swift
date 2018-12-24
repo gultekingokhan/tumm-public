@@ -22,6 +22,8 @@ final class ConverterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.customize()
+        
         viewModel.load(base: "SEK")
     }
     
@@ -37,6 +39,8 @@ extension ConverterViewController: ConverterViewModelDelegate {
     func handleViewModelOutput(_ output: ConverterViewModelOutput) {
         
         switch output {
+        case .updateTitle(let title):
+            self.title = title
         case .showLoading(let isLoading):
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         case .showLatestRates(let presentation):
@@ -47,7 +51,8 @@ extension ConverterViewController: ConverterViewModelDelegate {
     
     func navigate(to route: ConverterViewRoute) {
         let viewController = CurrencyListBuilder.make()
-        show(viewController, sender: self)
+        let navigationController = UINavigationController(rootViewController: viewController)
+        show(navigationController, sender: self)
     }
 }
 

@@ -19,7 +19,7 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
     }
     
     func load(base: String) {
-        
+        notify(.updateTitle("Test"))
         notify(.showLoading(true))
         
         service.fetchLatestRates(base: base) { (result) in

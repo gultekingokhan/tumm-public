@@ -22,6 +22,9 @@ final class CurrencyListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
+        title = "Hello"
         viewModel.load(base: "SEK")
     }
     
@@ -37,6 +40,8 @@ extension CurrencyListViewController: CurrencyListViewModelDelegate {
     func handleViewModelOutput(_ output: CurrencyListViewModelOutput) {
         
         switch output {
+        case .updateTitle(let title):
+            self.title = title
         case .showLoading(let isLoading):
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
         case .showLatestRates(let presentation):

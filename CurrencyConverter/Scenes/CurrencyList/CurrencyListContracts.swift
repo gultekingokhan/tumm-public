@@ -14,6 +14,7 @@ protocol CurrencyListViewModelProtocol {
 }
 
 enum CurrencyListViewModelOutput {
+    case updateTitle(String)
     case showLoading(Bool)
     case showLatestRates(CurrencyListPresentation)
 }

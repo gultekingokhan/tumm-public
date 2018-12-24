@@ -15,6 +15,7 @@ protocol ConverterViewModelProtocol {
 }
 
 enum ConverterViewModelOutput {
+    case updateTitle(String)
     case showLoading(Bool)
     case showLatestRates(ConverterPresentation)
 }
