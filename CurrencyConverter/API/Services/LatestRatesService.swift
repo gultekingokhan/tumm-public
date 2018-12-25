@@ -26,7 +26,7 @@ public class LatestRatesService: LatestRatesServiceProtocol {
 
         let params = ["base":base]
         
-        ServiceManager.get(from: ServiceManager.makeURL(with: .latest), params: params) { (response) in
+        RequestHelper.get(from: RequestHelper.makeURL(with: .latest), params: params) { (response) in
             
             switch response.result {
             case .success(let data):
