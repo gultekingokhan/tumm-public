@@ -16,7 +16,15 @@ public extension UIViewController {
         navigationItem.leftBarButtonItem = dismissButtonItem
     }
     
+    func addSettingsButton() {
+        let settingsButtonItem = UIBarButtonItem(image: UIImage(named: "settingsIcon"), style: .plain, target: self, action: #selector(emptyTask))
+        settingsButtonItem.tintColor = UIColor.rosyPink
+        navigationItem.rightBarButtonItem = settingsButtonItem
+    }
+    
     @objc func close() {
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func emptyTask() { }
 }

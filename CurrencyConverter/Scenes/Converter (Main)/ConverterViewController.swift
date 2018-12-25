@@ -23,6 +23,7 @@ final class ConverterViewController: UIViewController {
         super.viewDidLoad()
 
         navigationController?.navigationBar.customize(supportsLargeTitle: true)
+        addSettingsButton()
         
         viewModel.load(base: "SEK")
     }
@@ -69,12 +70,12 @@ extension ConverterViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ConverterRatesCell", for: indexPath) as! ConverterRatesCell
 
         let rate = rates[indexPath.row]
         
-        cell.textLabel?.text = rate.code
-        cell.detailTextLabel?.text = rate.name
+        cell.codeLabel?.text = rate.code
+        cell.valueLabel?.text = "1,00"
 
         return cell
     }
