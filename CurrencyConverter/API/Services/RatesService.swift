@@ -8,12 +8,12 @@
 
 import Foundation
 
-public protocol LatestRatesServiceProtocol {
+public protocol RatesServiceProtocol {
 
     func fetchLatestRates(base: String, completion: @escaping (Result<LatestRatesResponse>) -> Void)
 }
 
-public class LatestRatesService: LatestRatesServiceProtocol {
+public class RatesService: RatesServiceProtocol {
 
     public enum Error: Swift.Error {
         case serializationError(internal: Swift.Error)

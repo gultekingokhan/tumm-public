@@ -17,7 +17,7 @@ final class ConverterViewController: UIViewController {
         }
     }
     
-    var rates: [Currency] = []
+    var rates: [Rate] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +43,11 @@ extension ConverterViewController: ConverterViewModelDelegate {
             self.title = title
         case .showLoading(let isLoading):
             UIApplication.shared.isNetworkActivityIndicatorVisible = isLoading
-        case .showLatestRates(let presentation):
+        case .showConverterRates(let presentation):
             self.rates = presentation.rates
             self.tableView.reloadData()
+        case .showLatestRates(_):
+            break
         }
     }
     
@@ -58,9 +60,9 @@ extension ConverterViewController: ConverterViewModelDelegate {
 
 extension ConverterViewController: UITableViewDataSource {
   
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return 2
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return rates.count
@@ -71,8 +73,8 @@ extension ConverterViewController: UITableViewDataSource {
 
         let rate = rates[indexPath.row]
         
-        cell.textLabel?.text = rate.symbol
-        cell.detailTextLabel?.text = String(rate.value)
+        cell.textLabel?.text = rate.code
+        cell.detailTextLabel?.text = rate.name
 
         return cell
     }

@@ -18,6 +18,7 @@ enum ConverterViewModelOutput {
     case updateTitle(String)
     case showLoading(Bool)
     case showLatestRates(ConverterPresentation)
+    case showConverterRates(ConverterRatesPresentation)
 }
 
 enum ConverterViewRoute {

@@ -11,10 +11,10 @@ import Foundation
 final class CurrencyListViewModel: CurrencyListViewModelProtocol {
     
     weak var delegate: CurrencyListViewModelDelegate?
-    private let service: LatestRatesServiceProtocol
+    private let service: RatesServiceProtocol
     private var rates: LatestRatesResponse? = nil
 
-    init(service: LatestRatesServiceProtocol) {
+    init(service: RatesServiceProtocol) {
         self.service = service
     }
     

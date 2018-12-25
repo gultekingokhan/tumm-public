@@ -12,18 +12,18 @@ import UIKit
 
 protocol CoreDataHelperProcotol {
 
-    func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void)
-    func fetch() -> [Rate]
+    static func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void)
+    static func fetch() -> [Rate]
 }
 
-final class CoreDataHelper: NSObject, CoreDataHelperProcotol {
+struct CoreDataHelper: CoreDataHelperProcotol {
    
-    private var context: NSManagedObjectContext {
+    static private var context: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
     }
     
-    public func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void) {
+    static func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void) {
         
         let entity = NSEntityDescription.entity(forEntityName: "RateModel", in: context)
         let newRateModel = NSManagedObject(entity: entity!, insertInto: context)
@@ -34,7 +34,8 @@ final class CoreDataHelper: NSObject, CoreDataHelperProcotol {
         newRateModel.setValue(objectID, forKey: "id")
         newRateModel.setValue(rate.name, forKey: "name")
         newRateModel.setValue(rate.code, forKey: "code")
-        
+        newRateModel.setValue(rate.type.rawValue, forKey: "type")
+
         do {
             try context.save()
             failure(nil)
@@ -43,7 +44,7 @@ final class CoreDataHelper: NSObject, CoreDataHelperProcotol {
         }
     }
     
-    public func fetch() -> [Rate] {
+    static func fetch() -> [Rate] {
         // TODO: Add completion block and fetch them asynchronously.
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
         //request.predicate = NSPredicate(format: "age = %@", "12")

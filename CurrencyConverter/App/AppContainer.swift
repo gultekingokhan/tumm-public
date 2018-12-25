@@ -13,7 +13,8 @@ let app = AppContainer()
 final class AppContainer {
     
     let router = AppRouter()
-    let latestRatesService = LatestRatesService()
+    let latestRatesService = RatesService()
     let countriesService = CountriesService()
+    let converterRatesService = ConverterRatesService()
 
 }

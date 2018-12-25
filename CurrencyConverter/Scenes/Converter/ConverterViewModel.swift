@@ -11,10 +11,10 @@ import Foundation
 final class ConverterViewModel: ConverterViewModelProtocol {
     
     weak var delegate: ConverterViewModelDelegate?
-    private let service: LatestRatesServiceProtocol
-    private var rates: LatestRatesResponse? = nil
+    private let service: ConverterRatesServiceProtocol
+    private var rates: ConverterRatesResponse? = nil
 
-    init(service: LatestRatesServiceProtocol) {
+    init(service: ConverterRatesServiceProtocol) {
         self.service = service
     }
     
@@ -22,17 +22,16 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         notify(.updateTitle("Tumm"))
         notify(.showLoading(true))
         
-        service.fetchLatestRates(base: base) { (result) in
-            self.notify(.showLoading(false))
+        service.fetchRates { (response) in
+   
+            var _rates: [Rate] = []
             
-            switch result {
-            case .success(let response):
-                self.rates = response
-                let presentation = ConverterPresentation(base: response.base, date: response.date, rates: response.rates)
-                self.notify(.showLatestRates(presentation))
-            case .failure(let error):
-                print(error) // TODO: Handle this.
+            if response.rates.count == 0 { _rates = self.defaultRates() } else {
+                _rates = response.rates
             }
+            
+            let presentation = ConverterRatesPresentation(rates: _rates)
+            self.notify(.showConverterRates(presentation))
         }
     }
     
@@ -41,8 +40,19 @@ final class ConverterViewModel: ConverterViewModelProtocol {
     }
     
     func addCurrency() {
-        let viewModel = CurrencyListViewModel(service: service)
+        let currencyListService = RatesService()
+        let viewModel = CurrencyListViewModel(service: currencyListService)
         delegate?.navigate(to: .currencyList(viewModel))
     }
     
+    func defaultRates() -> [Rate] {
+        // TODO: Get these rates from Code Data.
+        let rateUSD = Rate(id: NSUUID().uuidString.lowercased(), code: "USD", type: .Sell, name: "United States dollar")
+        let rateEUR = Rate(id: NSUUID().uuidString.lowercased(), code: "EUR", type: .Buy, name: "European Euro")
+        
+        CoreDataHelper.save(rate: rateUSD) { (error) in }
+        CoreDataHelper.save(rate: rateEUR) { (error) in }
+
+        return CoreDataHelper.fetch()
+    }
 }
