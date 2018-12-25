@@ -12,8 +12,8 @@ import UIKit
 
 protocol CoreDataHelperProcotol {
 
-    func save(currency: Currency, failure: @escaping(_ error: Error?) -> Void)
-    func fetch() -> [Currency]
+    func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void)
+    func fetch() -> [Rate]
 }
 
 final class CoreDataHelper: NSObject, CoreDataHelperProcotol {
@@ -23,17 +23,17 @@ final class CoreDataHelper: NSObject, CoreDataHelperProcotol {
         return appDelegate.persistentContainer.viewContext
     }
     
-    public func save(currency: Currency, failure: @escaping(_ error: Error?) -> Void) {
+    public func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void) {
         
-        let entity = NSEntityDescription.entity(forEntityName: "CurrencyModel", in: context)
-        let newCurrencyModel = NSManagedObject(entity: entity!, insertInto: context)
+        let entity = NSEntityDescription.entity(forEntityName: "RateModel", in: context)
+        let newRateModel = NSManagedObject(entity: entity!, insertInto: context)
         
-        let objectID = newCurrencyModel.objectID.uriRepresentation().absoluteString
+        let objectID = newRateModel.objectID.uriRepresentation().absoluteString
         print("Object ID: \(objectID)")
         
-        newCurrencyModel.setValue(objectID, forKey: "id")
-        newCurrencyModel.setValue(currency.country, forKey: "name")
-        newCurrencyModel.setValue(currency.symbol, forKey: "symbol")
+        newRateModel.setValue(objectID, forKey: "id")
+        newRateModel.setValue(rate.name, forKey: "name")
+        newRateModel.setValue(rate.code, forKey: "code")
         
         do {
             try context.save()
@@ -43,29 +43,32 @@ final class CoreDataHelper: NSObject, CoreDataHelperProcotol {
         }
     }
     
-    public func fetch() -> [Currency] {
+    public func fetch() -> [Rate] {
         // TODO: Add completion block and fetch them asynchronously.
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "CurrencyModel")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
         //request.predicate = NSPredicate(format: "age = %@", "12")
         request.returnsObjectsAsFaults = false
         
         do {
             let results = try context.fetch(request)
-            var currencies: [Currency] = []
+            var rates: [Rate] = []
             
             for result in results as! [NSManagedObject] {
                 
-                //let id = result.value(forKey: "id") as! String
-                let symbol = result.value(forKey: "name") as! String
+                let id = result.value(forKey: "id") as! String
+                let code = result.value(forKey: "code") as! String
                 let name = result.value(forKey: "name") as! String
+                let type = result.value(forKey: "type") as! String
+
+                let rate = Rate(id: id,
+                                code: code,
+                                type: RateType(rawValue: type)!,
+                                name: name)
                 
-                let country = Country(cc: "", symbol: symbol, name: name)
-                let currency = Currency(symbol: symbol, value: 0, country: country)
-                
-                currencies.append(currency)
+                rates.append(rate)
             }
             
-            return currencies
+            return rates
             
         } catch _ {
             return []

@@ -26,6 +26,7 @@
 		7656AC8021C24BFB00A93A50 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7656AC7F21C24BFB00A93A50 /* CurrencyConverterTests.swift */; };
 		7656AC8B21C24BFB00A93A50 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7656AC8A21C24BFB00A93A50 /* CurrencyConverterUITests.swift */; };
 		7667FB1121D2AE6C005F5815 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1021D2AE6C005F5815 /* CoreDataHelper.swift */; };
+		7667FB1321D2B50F005F5815 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1221D2B50F005F5815 /* Rate.swift */; };
 		768204BE21CBBE07007FDE58 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 768204BD21CBBE07007FDE58 /* countries.json */; };
 		768204C221CBBEC7007FDE58 /* CountriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C121CBBEC7007FDE58 /* CountriesResponse.swift */; };
 		768204C421CBBF3A007FDE58 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C321CBBF3A007FDE58 /* Country.swift */; };
@@ -96,6 +97,7 @@
 		7656AC8A21C24BFB00A93A50 /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		7656AC8C21C24BFB00A93A50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7667FB1021D2AE6C005F5815 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		7667FB1221D2B50F005F5815 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		768204BD21CBBE07007FDE58 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		768204C121CBBEC7007FDE58 /* CountriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesResponse.swift; sourceTree = "<group>"; };
 		768204C321CBBF3A007FDE58 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -253,6 +255,7 @@
 			children = (
 				762802DC21C265BD00918F5D /* Currency.swift */,
 				768204C321CBBF3A007FDE58 /* Country.swift */,
+				7667FB1221D2B50F005F5815 /* Rate.swift */,
 			);
 			path = DTOs;
 			sourceTree = "<group>";
@@ -311,6 +314,15 @@
 			path = CurrencyConverterUITests;
 			sourceTree = "<group>";
 		};
+		7667FB1421D2B5F6005F5815 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				76A9BE9D21D1573900EDE271 /* CurrencyListCell.swift */,
+				76A9BE9F21D158C900EDE271 /* CurrencyListHeaderView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		76D9CE4A21C4295700592523 /* Presentations */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,13 +335,12 @@
 		76D9CE4D21C4451700592523 /* CurrencyList */ = {
 			isa = PBXGroup;
 			children = (
+				7667FB1421D2B5F6005F5815 /* Views */,
 				76D9CE5021C4453800592523 /* CurrencyListBuilder.swift */,
 				76D9CE4E21C4452A00592523 /* CurrencyListViewController.swift */,
 				76D9CE5221C4454200592523 /* CurrencyListViewModel.swift */,
 				76D9CE5621C4456A00592523 /* CurrencyListContracts.swift */,
 				76D9CE5421C4455400592523 /* CurrencyList.storyboard */,
-				76A9BE9D21D1573900EDE271 /* CurrencyListCell.swift */,
-				76A9BE9F21D158C900EDE271 /* CurrencyListHeaderView.swift */,
 			);
 			path = CurrencyList;
 			sourceTree = "<group>";
@@ -570,6 +581,7 @@
 				7667FB1121D2AE6C005F5815 /* CoreDataHelper.swift in Sources */,
 				76D9CE4921C4284F00592523 /* ConverterContracts.swift in Sources */,
 				762802DD21C265BD00918F5D /* Currency.swift in Sources */,
+				7667FB1321D2B50F005F5815 /* Rate.swift in Sources */,
 				768204C821CBC179007FDE58 /* ResourceLoader.swift in Sources */,
 				76D9CE4F21C4452A00592523 /* CurrencyListViewController.swift in Sources */,
 				76D9CE4721C4280E00592523 /* ConverterViewModel.swift in Sources */,
