@@ -10,10 +10,29 @@ import Foundation
 
 final class ConverterRatesPresentation: NSObject {
     
-    let rates: [Rate]
+    let rates: [String: [Rate]]
     
     init(rates: [Rate]) {
-        self.rates = rates
+        
+        var output: [String: [Rate]] = [:]
+        
+        var buyRates: [Rate] = []
+        var sellRates: [Rate] = []
+        
+        for rate in rates {
+            
+            if rate.type == .BUY {
+                buyRates.append(rate)
+            } else {
+                sellRates.append(rate)
+            }
+        }
+        
+        output.updateValue(sellRates, forKey: "SELL")
+        output.updateValue(buyRates, forKey: "BUY")
+
+        self.rates = output
+
         super.init()
     }
 }

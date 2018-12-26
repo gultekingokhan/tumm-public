@@ -13,14 +13,14 @@ final class ConverterViewModel: ConverterViewModelProtocol {
     weak var delegate: ConverterViewModelDelegate?
     private let service: ConverterRatesServiceProtocol
     private var rates: ConverterRatesResponse? = nil
-
+    private var latestRates: [String: Double] = [:]
+    
     init(service: ConverterRatesServiceProtocol) {
         self.service = service
     }
     
     func load(base: String) {
         notify(.updateTitle("Tumm"))
-        notify(.showLoading(true))
         
         service.fetchRates { (response) in
    
@@ -30,9 +30,57 @@ final class ConverterViewModel: ConverterViewModelProtocol {
                 _rates = response.rates
             }
             
-            let presentation = ConverterRatesPresentation(rates: _rates)
-            self.notify(.showConverterRates(presentation))
+            self.fetchLatestRates(base: base, completion: { (success) in
+                
+                self.notify(.showLoading(false))
+
+                if success {
+                    
+                    _ = self.update(rates: _rates)
+                    
+                    let presentation = ConverterRatesPresentation(rates: _rates)
+                    self.notify(.showConverterRates(presentation))
+
+                } else { /* TODO: Handle this. */ }
+            })
         }
+    }
+    
+    private func fetchLatestRates(base: String, completion: @escaping(_ success: Bool) ->Void) {
+
+        notify(.showLoading(true))
+        
+        let ratesService = RatesService()
+        
+        ratesService.fetchLatestRates(base: base) { (result) in
+            self.notify(.showLoading(false))
+            
+            switch result {
+            case .success(let response):
+
+                self.latestRates = response.rates
+        
+                completion(true)
+
+            case .failure(let error):
+                print(error)
+                completion(false)
+            }
+        }
+    }
+    
+    private func update(rates: [Rate]) -> [Rate] {
+        
+        for localRate in rates {
+            
+            for remoteRate in latestRates {
+                
+                if localRate.code == remoteRate.key {
+                    localRate.value = remoteRate.value
+                }
+            }
+        }
+        return rates
     }
     
     private func notify(_ output: ConverterViewModelOutput) {
@@ -47,8 +95,8 @@ final class ConverterViewModel: ConverterViewModelProtocol {
     
     func defaultRates() -> [Rate] {
         // TODO: Get these rates from Code Data.
-        let rateUSD = Rate(id: NSUUID().uuidString.lowercased(), code: "USD", type: .Sell, name: "United States dollar")
-        let rateEUR = Rate(id: NSUUID().uuidString.lowercased(), code: "EUR", type: .Buy, name: "European Euro")
+        let rateUSD = Rate(id: NSUUID().uuidString.lowercased(), code: "USD", type: .SELL, name: "United States dollar")
+        let rateEUR = Rate(id: NSUUID().uuidString.lowercased(), code: "EUR", type: .BUY, name: "European Euro")
         
         CoreDataHelper.save(rate: rateUSD) { (error) in }
         CoreDataHelper.save(rate: rateEUR) { (error) in }

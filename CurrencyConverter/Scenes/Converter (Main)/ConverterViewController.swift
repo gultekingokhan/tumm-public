@@ -17,7 +17,7 @@ final class ConverterViewController: UIViewController {
         }
     }
     
-    var rates: [Rate] = []
+    var rates: [String: [Rate]] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,21 +63,32 @@ extension ConverterViewController: UITableViewDataSource {
   
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return rates.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-       
-        if section == 0 { return 1 } else { return rates.count-1 }
+
+        var key = RateType.SELL.rawValue
+        
+        if section == 1 { key = RateType.BUY.rawValue }
+        
+        return rates[key]!.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConverterRatesCell", for: indexPath) as! ConverterRatesCell
 
-        let rate = rates[indexPath.row]
+        var key = RateType.SELL.rawValue
         
-        cell.codeLabel?.text = rate.code
-        cell.valueLabel?.text = "1,00"
+        if indexPath.section == 1 { key = RateType.BUY.rawValue }
+
+        if let _rates = rates[key] {
+            
+            let rate = _rates[indexPath.row]
+            
+            cell.codeLabel?.text = rate.code
+            cell.valueLabel?.text = String(format: "%.2f", rate.value!)
+        }
 
         return cell
     }

@@ -9,8 +9,8 @@
 import Foundation
 
 public enum RateType: String {
-    case Sell
-    case Buy
+    case SELL
+    case BUY
 }
 
 final class Rate: NSObject {
@@ -19,6 +19,7 @@ final class Rate: NSObject {
     var code: String
     var type: RateType
     var name: String
+    var value: Double?
     
     init(id: String, code: String, type: RateType, name: String) {
         self.id = id
