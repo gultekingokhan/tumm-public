@@ -15,7 +15,7 @@ public final class CurrencyListHeaderView: UIView {
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
-        backgroundColor = UIColor.darkBackgroundColor
+        backgroundColor = UIColor.darkTwo
 
         titleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: 120, height: frame.height))
         titleLabel?.textColor = UIColor.lightSalmon

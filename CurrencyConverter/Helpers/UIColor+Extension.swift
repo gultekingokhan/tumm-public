@@ -10,28 +10,48 @@ import UIKit
 
 public extension UIColor {
     
-    class var darkBackgroundColor: UIColor {
-        return UIColor(red: 40/255, green: 49/255, blue: 75/255, alpha: 1.0)
+    @nonobjc class var purpleishPink: UIColor {
+        return UIColor(red: 204.0 / 255.0, green: 95.0 / 255.0, blue: 197.0 / 255.0, alpha: 1.0)
     }
     
-    class var lightBackgroundColor: UIColor {
-        return UIColor(red: 21/255, green: 28/255, blue: 50/255, alpha: 1.0)
+    @nonobjc class var battleshipGrey: UIColor {
+        return UIColor(red: 106.0 / 255.0, green: 114.0 / 255.0, blue: 137.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var brownGrey: UIColor {
+        return UIColor(white: 172.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var rosyPink: UIColor {
+        return UIColor(red: 251.0 / 255.0, green: 108.0 / 255.0, blue: 124.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var darkTwo: UIColor { //lightBackgroundColor
+        return UIColor(red: 21.0 / 255.0, green: 27.0 / 255.0, blue: 50.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var darkThree: UIColor {
+        return UIColor(red: 31.0 / 255.0, green: 40.0 / 255.0, blue: 65.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var dark: UIColor { //darkBackgroundColor
+        return UIColor(red: 40.0 / 255.0, green: 49.0 / 255.0, blue: 75.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var lightSalmon: UIColor {
+        return UIColor(red: 1.0, green: 191.0 / 255.0, blue: 142.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var black16: UIColor {
+        return UIColor(white: 0.0, alpha: 0.16)
+    }
+    
+    @nonobjc class var salmonPink: UIColor {
+        return UIColor(red: 253.0 / 255.0, green: 109.0 / 255.0, blue: 121.0 / 255.0, alpha: 1.0)
+    }
+    
+    @nonobjc class var purpleishPinkTwo: UIColor {
+        return UIColor(red: 204.0 / 255.0, green: 97.0 / 255.0, blue: 199.0 / 255.0, alpha: 1.0)
     }
 
-    class var lightSalmon: UIColor { // rgb 255 191 142
-        return UIColor(red: 255/255, green: 191/255, blue: 142/255, alpha: 1.0)
-    }
-    
-    class var purpleishPink: UIColor { // rgb 204 95 197
-        return UIColor(red: 204/255, green: 95/255, blue: 197/255, alpha: 1.0)
-    }
-    
-    class var battleshipGrey: UIColor { // rgb 106 114 137
-        return UIColor(red: 106/255, green: 114/255, blue: 137/255, alpha: 1.0)
-    }
-    
-    class var rosyPink: UIColor { // rgb 204 95 197
-        return UIColor(red: 251/255, green: 108/255, blue: 124/255, alpha: 1.0)
-    }
 }
-

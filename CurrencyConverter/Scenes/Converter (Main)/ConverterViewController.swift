@@ -11,6 +11,7 @@ import UIKit
 final class ConverterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
+    
     var viewModel: ConverterViewModelProtocol! {
         didSet {
             viewModel.delegate = self
@@ -66,6 +67,10 @@ extension ConverterViewController: UITableViewDataSource {
         return rates.count
     }
     
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 { return 0 } else { return 60 }
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
         var key = RateType.SELL.rawValue
@@ -100,15 +105,28 @@ extension ConverterViewController: UITableViewDelegate {
         let view = ConverterRatesHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 28))
         
         if section == 0 {
-            view.titleLabel?.text = "SELL"
+            view.titleLabel?.text = RateType.SELL.rawValue
         } else {
-            view.titleLabel?.text = "BUY"
+            view.titleLabel?.text = RateType.BUY.rawValue
         }
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = ConverterRatesFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 60))
+        footerView.delegate = self
         return view
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        viewModel.addCurrency()
+    }
+}
+
+extension ConverterViewController: ConverterRatesFooterViewDelegate {
+    
+    func addCurrencyButtonTapped() {
         viewModel.addCurrency()
     }
 }
