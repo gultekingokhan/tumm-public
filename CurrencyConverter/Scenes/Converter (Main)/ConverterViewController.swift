@@ -61,12 +61,14 @@ extension ConverterViewController: ConverterViewModelDelegate {
 
 extension ConverterViewController: UITableViewDataSource {
   
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 2
-//    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 2
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rates.count
+       
+        if section == 0 { return 1 } else { return rates.count-1 }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,6 +84,17 @@ extension ConverterViewController: UITableViewDataSource {
 }
 
 extension ConverterViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = ConverterRatesHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 28))
+        
+        if section == 0 {
+            view.titleLabel?.text = "SELL"
+        } else {
+            view.titleLabel?.text = "BUY"
+        }
+        return view
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
