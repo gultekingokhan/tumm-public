@@ -18,9 +18,14 @@ public final class CurrencyListHeaderView: UIView {
         backgroundColor = UIColor.darkTwo
 
         titleLabel = UILabel(frame: CGRect(x: 16, y: 0, width: 120, height: frame.height))
-        titleLabel?.textColor = UIColor.lightSalmon
         titleLabel?.font = UIFont(name: "Avenir-Medium", size: 16)
         addSubview(titleLabel!)
+        
+        update(themeColor: UIColor.lightSalmon)
+    }
+    
+    public func update(themeColor: UIColor) {
+        titleLabel?.textColor = themeColor
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -7,8 +7,10 @@
 //
 
 import Foundation
+import UIKit
 
 protocol CurrencyListViewModelProtocol {
+    var themeColor: UIColor { get set }
     var delegate: CurrencyListViewModelDelegate? { get set }
     func load(base: String)
 }

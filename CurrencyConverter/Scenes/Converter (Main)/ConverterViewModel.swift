@@ -87,9 +87,9 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         delegate?.handleViewModelOutput(output)
     }
     
-    func addCurrency() {
+    func addCurrency(with rateType: RateType) {
         let currencyListService = RatesService()
-        let viewModel = CurrencyListViewModel(service: currencyListService)
+        let viewModel = CurrencyListViewModel(service: currencyListService, rateType: rateType)
         delegate?.navigate(to: .currencyList(viewModel))
     }
     

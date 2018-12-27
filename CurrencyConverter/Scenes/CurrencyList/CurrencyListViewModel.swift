@@ -7,19 +7,27 @@
 //
 
 import Foundation
+import UIKit
 
 final class CurrencyListViewModel: CurrencyListViewModelProtocol {
     
+    var themeColor: UIColor = UIColor.lightSalmon
     weak var delegate: CurrencyListViewModelDelegate?
     private let service: RatesServiceProtocol
     private var rates: LatestRatesResponse? = nil
-
-    init(service: RatesServiceProtocol) {
+    private let rateType: RateType
+    
+    init(service: RatesServiceProtocol, rateType: RateType) {
         self.service = service
+        self.rateType = rateType
     }
     
     func load(base: String) {
-        notify(.updateTitle("Choose your sell currency"))
+
+        if rateType == .BUY { themeColor = UIColor.purpleishPink }
+        
+        let rateTypeLowercased = rateType.rawValue.lowercased()
+        notify(.updateTitle("Choose your \(rateTypeLowercased) currency"))
         notify(.showLoading(true))
         
         service.fetchLatestRates(base: base) { (result) in

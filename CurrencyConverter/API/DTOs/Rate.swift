@@ -15,13 +15,13 @@ public enum RateType: String {
 
 final class Rate: NSObject {
     
-    var id: String
+    var id: String?
     var code: String
     var type: RateType
     var name: String
     var value: Double?
     
-    init(id: String, code: String, type: RateType, name: String) {
+    init(id: String? = nil, code: String, type: RateType, name: String) {
         self.id = id
         self.code = code
         self.type = type

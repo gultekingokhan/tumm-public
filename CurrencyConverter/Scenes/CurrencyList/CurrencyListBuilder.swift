@@ -10,10 +10,10 @@ import UIKit
 
 final class CurrencyListBuilder {
     
-    static func make() -> CurrencyListViewController {
+    static func make(with viewModel: CurrencyListViewModelProtocol) -> CurrencyListViewController {
         let storyboard = UIStoryboard(name: "CurrencyList", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "CurrencyListViewController") as! CurrencyListViewController
-        viewController.viewModel = CurrencyListViewModel(service: app.latestRatesService)
+        viewController.viewModel = viewModel
         return viewController
     }
 }

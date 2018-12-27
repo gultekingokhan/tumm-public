@@ -30,8 +30,8 @@ final class ConverterViewController: UIViewController {
     }
     
     @IBAction func allCurrenciesButtonTapped(_ sender: Any) {
-        let viewController = CurrencyListBuilder.make()
-        present(viewController, animated: true, completion: nil)
+//        let viewController = CurrencyListBuilder.make(with: <#CurrencyListViewModelProtocol#>)
+//        present(viewController, animated: true, completion: nil)
     }
     
 }
@@ -54,9 +54,13 @@ extension ConverterViewController: ConverterViewModelDelegate {
     }
     
     func navigate(to route: ConverterViewRoute) {
-        let viewController = CurrencyListBuilder.make()
-        let navigationController = UINavigationController(rootViewController: viewController)
-        show(navigationController, sender: self)
+        
+        switch route {
+        case .currencyList(let viewModel):
+            let viewController = CurrencyListBuilder.make(with: viewModel)
+            let navigationController = UINavigationController(rootViewController: viewController)
+            show(navigationController, sender: self)
+        }
     }
 }
 
@@ -115,18 +119,22 @@ extension ConverterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = ConverterRatesFooterView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 60))
         footerView.delegate = self
-        return view
+        return footerView
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.addCurrency()
+        
+        var rateType = RateType.SELL.rawValue
+        if indexPath.section == 1 { rateType = RateType.BUY.rawValue }
+
+        viewModel.addCurrency(with: RateType(rawValue: rateType)!)
     }
 }
 
 extension ConverterViewController: ConverterRatesFooterViewDelegate {
     
     func addCurrencyButtonTapped() {
-        viewModel.addCurrency()
+        viewModel.addCurrency(with: .BUY)
     }
 }

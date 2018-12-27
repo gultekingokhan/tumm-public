@@ -11,7 +11,7 @@ import UIKit
 final class CurrencyListViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    var viewModel: CurrencyListViewModel! {
+    var viewModel: CurrencyListViewModelProtocol! {
         didSet {
             viewModel.delegate = self
         }
@@ -29,8 +29,10 @@ final class CurrencyListViewController: UIViewController {
     }
     
     @IBAction func allCurrenciesButtonTapped(_ sender: Any) {
+        /*
         let viewController = CurrencyListBuilder.make()
         present(viewController, animated: true, completion: nil)
+        */
     }
     
 }
@@ -51,8 +53,8 @@ extension CurrencyListViewController: CurrencyListViewModelDelegate {
     }
     
     func navigate(to route: CurrencyListViewRoute) {
-        let viewController = CurrencyListBuilder.make()
-        show(viewController, sender: self)
+//        let viewController = CurrencyListBuilder.make(with: <#CurrencyListViewModelProtocol#>)
+//        show(viewController, sender: self)
     }
 }
 
@@ -73,6 +75,7 @@ extension CurrencyListViewController: UITableViewDataSource {
         let key = Array(rates.keys)[indexPath.section]
         let rate = rates[key]![indexPath.row]
 
+        cell.update(themeColor: viewModel.themeColor)
         cell.symbolLabel.text = rate.symbol
         cell.nameLabel.text = rate.country.name
         
@@ -83,14 +86,24 @@ extension CurrencyListViewController: UITableViewDataSource {
 extension CurrencyListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let view = CurrencyListHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 28))
+        let view: CurrencyListHeaderView = CurrencyListHeaderView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 28))
         
+        view.update(themeColor: viewModel.themeColor)
         view.titleLabel?.text = Array(rates.keys)[section]
         return view
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        //viewModel.addCurrency()
+        
+        let key = Array(rates.keys)[indexPath.section]
+        let rate = rates[key]![indexPath.row]
+
+        let rateToSave = Rate(code: rate.symbol, type: .BUY, name: rate.country.name)
+        CoreDataHelper.save(rate: rateToSave) { (error) in
+            print("ERROR: \(String(describing: error))")
+        }
+        
+        dismiss(animated: true, completion: nil)
     }
 }

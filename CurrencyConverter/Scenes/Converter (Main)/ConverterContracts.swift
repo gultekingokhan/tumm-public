@@ -11,7 +11,7 @@ import Foundation
 protocol ConverterViewModelProtocol {
     var delegate: ConverterViewModelDelegate? { get set }
     func load(base: String)
-    func addCurrency()
+    func addCurrency(with rateType: RateType)
 }
 
 enum ConverterViewModelOutput {

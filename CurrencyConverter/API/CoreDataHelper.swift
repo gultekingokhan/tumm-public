@@ -29,7 +29,6 @@ struct CoreDataHelper: CoreDataHelperProcotol {
         let newRateModel = NSManagedObject(entity: entity!, insertInto: context)
         
         let objectID = newRateModel.objectID.uriRepresentation().absoluteString
-        print("Object ID: \(objectID)")
         
         newRateModel.setValue(objectID, forKey: "id")
         newRateModel.setValue(rate.name, forKey: "name")

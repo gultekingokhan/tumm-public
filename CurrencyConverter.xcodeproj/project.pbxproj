@@ -45,7 +45,6 @@
 		76A9BEA021D158C900EDE271 /* CurrencyListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9BE9F21D158C900EDE271 /* CurrencyListHeaderView.swift */; };
 		76A9BEA221D1647A00EDE271 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9BEA121D1647A00EDE271 /* UIViewController+Extension.swift */; };
 		76B7378821D13F1600C61107 /* UINavigationBar+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B7378721D13F1600C61107 /* UINavigationBar+Extension.swift */; };
-		76B7378921D1417E00C61107 /* CurrencyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9CE4E21C4452A00592523 /* CurrencyListViewController.swift */; };
 		76C8958421CB93B500D581E7 /* CurrencyListPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C8958321CB93B500D581E7 /* CurrencyListPresentation.swift */; };
 		76D9CE4721C4280E00592523 /* ConverterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9CE4621C4280E00592523 /* ConverterViewModel.swift */; };
 		76D9CE4921C4284F00592523 /* ConverterContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D9CE4821C4284F00592523 /* ConverterContracts.swift */; };
@@ -657,7 +656,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				768204CA21CBC330007FDE58 /* CountryListTests.swift in Sources */,
-				76B7378921D1417E00C61107 /* CurrencyListViewController.swift in Sources */,
 				7656AC8021C24BFB00A93A50 /* CurrencyConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
