@@ -10,8 +10,9 @@ import Foundation
 
 protocol ConverterViewModelProtocol {
     var delegate: ConverterViewModelDelegate? { get set }
-    func load(base: String)
+    func load()
     func addCurrency(with rateType: RateType)
+    func updateRateValues(value: Double)
 }
 
 enum ConverterViewModelOutput {
@@ -19,6 +20,7 @@ enum ConverterViewModelOutput {
     case showLoading(Bool)
     case showLatestRates(ConverterPresentation)
     case showConverterRates(ConverterRatesPresentation)
+    case showUpdatedRates(ConverterRatesPresentation)
 }
 
 enum ConverterViewRoute {

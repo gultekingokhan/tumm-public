@@ -13,7 +13,8 @@ final class ConverterRatesCell: UITableViewCell {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var codeLabel: UILabel!
     @IBOutlet weak var valueLabel: UILabel!
-    
+    @IBOutlet weak var rateTextField: UITextField?
+
     override func awakeFromNib() {
         containerView.roundCorners(radius: 6)
         containerView.dropShadow(with: UIColor.black)

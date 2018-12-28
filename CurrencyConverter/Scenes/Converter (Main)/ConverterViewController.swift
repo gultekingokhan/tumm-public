@@ -26,7 +26,7 @@ final class ConverterViewController: UIViewController {
         navigationController?.navigationBar.customize(supportsLargeTitle: true)
         addSettingsButton()
         
-        viewModel.load(base: "SEK")
+        viewModel.load()
     }
     
     @IBAction func allCurrenciesButtonTapped(_ sender: Any) {
@@ -50,6 +50,9 @@ extension ConverterViewController: ConverterViewModelDelegate {
             self.tableView.reloadData()
         case .showLatestRates(_):
             break
+        case .showUpdatedRates(let presentation):
+            self.rates = presentation.rates
+            self.tableView.reloadSections([1], with: .none)
         }
     }
     
@@ -58,6 +61,7 @@ extension ConverterViewController: ConverterViewModelDelegate {
         switch route {
         case .currencyList(let viewModel):
             let viewController = CurrencyListBuilder.make(with: viewModel)
+            viewController.delegate = self
             let navigationController = UINavigationController(rootViewController: viewController)
             show(navigationController, sender: self)
         }
@@ -66,7 +70,6 @@ extension ConverterViewController: ConverterViewModelDelegate {
 
 extension ConverterViewController: UITableViewDataSource {
   
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return rates.count
     }
@@ -88,15 +91,31 @@ extension ConverterViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConverterRatesCell", for: indexPath) as! ConverterRatesCell
 
         var key = RateType.SELL.rawValue
-        
-        if indexPath.section == 1 { key = RateType.BUY.rawValue }
 
+        if indexPath.section == 1 { key = RateType.BUY.rawValue }
+        
         if let _rates = rates[key] {
             
             let rate = _rates[indexPath.row]
             
             cell.codeLabel?.text = rate.code
-            cell.valueLabel?.text = String(format: "%.2f", rate.value!)
+          
+            var valueString = ""
+            
+            if let value = rate.value {
+                valueString = String(format: "%.2f", value)
+            }
+            
+            if indexPath.section == 0 {
+                cell.valueLabel.isHidden = true
+                cell.rateTextField?.isHidden = false
+                cell.rateTextField?.text = valueString
+                cell.rateTextField?.delegate = self
+            } else {
+                cell.valueLabel.isHidden = false
+                cell.rateTextField?.isHidden = true
+                cell.valueLabel?.text = valueString
+            }
         }
 
         return cell
@@ -137,4 +156,46 @@ extension ConverterViewController: ConverterRatesFooterViewDelegate {
     func addCurrencyButtonTapped() {
         viewModel.addCurrency(with: .BUY)
     }
+}
+
+extension ConverterViewController: CurrencyListViewControllerDelegate {
+    func updateData() {
+        viewModel.load()
+    }
+}
+
+extension ConverterViewController: UITextFieldDelegate {
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        guard let oldText = textField.text, let r = Range(range, in: oldText) else {
+            return true
+        }
+        
+        let newText = oldText.replacingCharacters(in: r, with: string)
+        //let isNumeric = newText.isEmpty || (Double(newText) != nil)
+        let numberOfDots = newText.components(separatedBy: ",").count - 1
+        
+        let numberOfDecimalDigits: Int
+        if let dotIndex = newText.index(of: ",") {
+            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+
+        var replacedText = "0"
+        
+        if (textField.text?.count)! == 0 {
+            replacedText = "0"
+        } else {
+            replacedText = textField.text!.replacingOccurrences(of: ",", with: ".")
+        }
+
+        print("newText:\(replacedText)")
+
+        viewModel.updateRateValues(value: Double(replacedText)!)
+
+        return numberOfDots <= 1 && numberOfDecimalDigits <= 4
+    }
+    
 }

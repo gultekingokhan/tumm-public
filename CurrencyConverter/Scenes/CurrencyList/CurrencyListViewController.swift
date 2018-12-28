@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol CurrencyListViewControllerDelegate {
+    func updateData()
+}
+
 final class CurrencyListViewController: UIViewController {
+    
+    var delegate: CurrencyListViewControllerDelegate?
     
     @IBOutlet weak var tableView: UITableView!
     var viewModel: CurrencyListViewModelProtocol! {
@@ -104,6 +110,8 @@ extension CurrencyListViewController: UITableViewDelegate {
             print("ERROR: \(String(describing: error))")
         }
         
+        self.delegate?.updateData()
+
         dismiss(animated: true, completion: nil)
     }
 }

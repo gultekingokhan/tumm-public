@@ -12,14 +12,14 @@ final class ConverterViewModel: ConverterViewModelProtocol {
     
     weak var delegate: ConverterViewModelDelegate?
     private let service: ConverterRatesServiceProtocol
-    private var rates: ConverterRatesResponse? = nil
+    private var rates: [Rate] = []
     private var latestRates: [String: Double] = [:]
     
     init(service: ConverterRatesServiceProtocol) {
         self.service = service
     }
     
-    func load(base: String) {
+    func load() {
         notify(.updateTitle("Tumm"))
         
         service.fetchRates { (response) in
@@ -28,9 +28,14 @@ final class ConverterViewModel: ConverterViewModelProtocol {
             
             if response.rates.count == 0 { _rates = self.defaultRates() } else {
                 _rates = response.rates
+                
+                let presentation = ConverterRatesPresentation(rates: _rates)
+                self.notify(.showConverterRates(presentation))
             }
             
-            self.fetchLatestRates(base: base, completion: { (success) in
+            let base = _rates.first?.code
+            
+            self.fetchLatestRates(base: base!, completion: { (success) in
                 
                 self.notify(.showLoading(false))
 
@@ -38,12 +43,27 @@ final class ConverterViewModel: ConverterViewModelProtocol {
                     
                     _ = self.update(rates: _rates)
                     
+                    self.rates = _rates
                     let presentation = ConverterRatesPresentation(rates: _rates)
                     self.notify(.showConverterRates(presentation))
 
                 } else { /* TODO: Handle this. */ }
             })
         }
+    }
+    
+    func updateRateValues(value: Double) {
+        
+        var _rates: [Rate] = []
+        
+        for rate in rates {
+            let newValue = rate.value! * value
+            let newRate = Rate(id: rate.id, code: rate.code, type: rate.type, name: rate.name)
+            newRate.value = newValue
+            _rates.append(newRate)
+        }
+        let presentation = ConverterRatesPresentation(rates: _rates)
+        self.notify(.showUpdatedRates(presentation))
     }
     
     private func fetchLatestRates(base: String, completion: @escaping(_ success: Bool) ->Void) {
