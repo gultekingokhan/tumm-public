@@ -118,9 +118,9 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         let rateUSD = Rate(id: NSUUID().uuidString.lowercased(), code: "USD", type: .SELL, name: "United States dollar")
         let rateEUR = Rate(id: NSUUID().uuidString.lowercased(), code: "EUR", type: .BUY, name: "European Euro")
         
-        CoreDataHelper.save(rate: rateUSD) { (error) in }
-        CoreDataHelper.save(rate: rateEUR) { (error) in }
+        CoreDataClient.save(rate: rateUSD) { (error) in }
+        CoreDataClient.save(rate: rateEUR) { (error) in }
 
-        return CoreDataHelper.fetch()
+        return CoreDataClient.fetch()
     }
 }

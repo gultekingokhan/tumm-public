@@ -24,7 +24,7 @@ public class ConverterRatesService: ConverterRatesServiceProtocol {
     
     public func fetchRates(completion: @escaping (_ response: ConverterRatesResponse) -> Void) {
 
-        let rates = CoreDataHelper.fetch()
+        let rates = CoreDataClient.fetch()
         completion(ConverterRatesResponse(rates: rates))
     }
 }

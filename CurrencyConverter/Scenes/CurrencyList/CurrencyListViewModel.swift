@@ -51,5 +51,8 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
     public func convert(from symbol: String) -> String {
         return ""
     }
+    
+    func actionButtonTapped(_ sender: ActionButton) {
+        print("button tapped")
+    }
 }
-

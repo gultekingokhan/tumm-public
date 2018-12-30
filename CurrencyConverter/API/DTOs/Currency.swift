@@ -13,6 +13,7 @@ public struct Currency {
     let symbol: String
     let value: Double
     let country: Country
+    var isAdded: Bool?
     
     init(symbol: String, value: Double, country: Country) {
         self.symbol = symbol

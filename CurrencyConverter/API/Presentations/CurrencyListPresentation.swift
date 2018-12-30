@@ -51,6 +51,20 @@ final class CurrencyListPresentation: NSObject {
             }
         }
         
+        let service = ConverterRatesService()
+        
+        service.fetchRates { (response) in
+            
+            var i = 0
+            for currency in currencies {
+                for rate in response.rates {
+                    if currency.symbol == rate.code {
+                        currencies[i].isAdded = true
+                    }
+                }
+                i = i + 1
+            }
+        }
         self.rates = Dictionary(grouping: currencies, by: { String($0.symbol.first!) })
         
         super.init()

@@ -33,14 +33,6 @@ final class CurrencyListViewController: UIViewController {
 
         viewModel.load(base: "SEK")
     }
-    
-    @IBAction func allCurrenciesButtonTapped(_ sender: Any) {
-        /*
-        let viewController = CurrencyListBuilder.make()
-        present(viewController, animated: true, completion: nil)
-        */
-    }
-    
 }
 
 extension CurrencyListViewController: CurrencyListViewModelDelegate {
@@ -57,11 +49,7 @@ extension CurrencyListViewController: CurrencyListViewModelDelegate {
             self.tableView.reloadData()
         }
     }
-    
-    func navigate(to route: CurrencyListViewRoute) {
-//        let viewController = CurrencyListBuilder.make(with: <#CurrencyListViewModelProtocol#>)
-//        show(viewController, sender: self)
-    }
+
 }
 
 extension CurrencyListViewController: UITableViewDataSource {
@@ -79,12 +67,13 @@ extension CurrencyListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as! CurrencyListCell
         
         let key = Array(rates.keys)[indexPath.section]
-        let rate = rates[key]![indexPath.row]
+        let currency = rates[key]![indexPath.row]
 
+        cell.load(currency: currency)
         cell.update(themeColor: viewModel.themeColor)
-        cell.symbolLabel.text = rate.symbol
-        cell.nameLabel.text = rate.country.name
         
+        cell.actionButton.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
+
         return cell
     }
 }
@@ -106,7 +95,7 @@ extension CurrencyListViewController: UITableViewDelegate {
         let rate = rates[key]![indexPath.row]
 
         let rateToSave = Rate(code: rate.symbol, type: .BUY, name: rate.country.name)
-        CoreDataHelper.save(rate: rateToSave) { (error) in
+        CoreDataClient.save(rate: rateToSave) { (error) in
             print("ERROR: \(String(describing: error))")
         }
         
@@ -114,4 +103,10 @@ extension CurrencyListViewController: UITableViewDelegate {
 
         dismiss(animated: true, completion: nil)
     }
+    
+    @objc func action(_ sender: ActionButton) {
+        viewModel.actionButtonTapped(sender)
+        // TODO: ADD CLOSURE
+    }
+    
 }

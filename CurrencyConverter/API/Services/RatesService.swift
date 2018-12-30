@@ -26,7 +26,7 @@ public class RatesService: RatesServiceProtocol {
 
         let params = ["base":base]
         
-        RequestHelper.get(from: RequestHelper.makeURL(with: .latest), params: params) { (response) in
+        HTTPClient.get(from: HTTPClient.makeURL(with: .latest), params: params) { (response) in
             
             switch response.result {
             case .success(let data):

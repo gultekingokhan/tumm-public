@@ -10,13 +10,13 @@ import Foundation
 import CoreData
 import UIKit
 
-protocol CoreDataHelperProcotol {
+protocol CoreDataClientProcotol {
 
     static func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void)
     static func fetch() -> [Rate]
 }
 
-struct CoreDataHelper: CoreDataHelperProcotol {
+struct CoreDataClient: CoreDataClientProcotol {
    
     static private var context: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

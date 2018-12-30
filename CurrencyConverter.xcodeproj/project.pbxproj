@@ -15,12 +15,12 @@
 		762802C721C2528700918F5D /* ConverterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802C621C2528700918F5D /* ConverterBuilder.swift */; };
 		762802D021C258CC00918F5D /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802CF21C258CC00918F5D /* Credentials.swift */; };
 		762802D221C25B7F00918F5D /* RatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D121C25B7F00918F5D /* RatesService.swift */; };
-		762802D521C25BAB00918F5D /* RequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D421C25BAB00918F5D /* RequestHelper.swift */; };
+		762802D521C25BAB00918F5D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D421C25BAB00918F5D /* HTTPClient.swift */; };
 		762802D721C25C1F00918F5D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D621C25C1F00918F5D /* Result.swift */; };
 		762802DB21C2636000918F5D /* LatestRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802DA21C2636000918F5D /* LatestRatesResponse.swift */; };
 		762802DD21C265BD00918F5D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802DC21C265BD00918F5D /* Currency.swift */; };
 		762F80E821D3D3B600FC380B /* ConverterRatesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80E721D3D3B600FC380B /* ConverterRatesHeaderView.swift */; };
-		762F80EA21D4069B00FC380B /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80E921D4069B00FC380B /* GradientButton.swift */; };
+		762F80EA21D4069B00FC380B /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80E921D4069B00FC380B /* ActionButton.swift */; };
 		762F80EC21D4089900FC380B /* ConverterRatesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80EB21D4089900FC380B /* ConverterRatesFooterView.swift */; };
 		7650B83221D2BC3E0092FE7C /* ConverterRatesPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650B83121D2BC3E0092FE7C /* ConverterRatesPresentation.swift */; };
 		7650B83721D2C4D80092FE7C /* ConverterRatesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650B83621D2C4D80092FE7C /* ConverterRatesCell.swift */; };
@@ -31,7 +31,7 @@
 		7656AC7521C24BFB00A93A50 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7656AC7321C24BFB00A93A50 /* LaunchScreen.storyboard */; };
 		7656AC8021C24BFB00A93A50 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7656AC7F21C24BFB00A93A50 /* CurrencyConverterTests.swift */; };
 		7656AC8B21C24BFB00A93A50 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7656AC8A21C24BFB00A93A50 /* CurrencyConverterUITests.swift */; };
-		7667FB1121D2AE6C005F5815 /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1021D2AE6C005F5815 /* CoreDataHelper.swift */; };
+		7667FB1121D2AE6C005F5815 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1021D2AE6C005F5815 /* CoreDataClient.swift */; };
 		7667FB1321D2B50F005F5815 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1221D2B50F005F5815 /* Rate.swift */; };
 		7667FB1621D2B8BD005F5815 /* ConverterRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */; };
 		7667FB1821D2B937005F5815 /* ConverterRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1721D2B937005F5815 /* ConverterRatesResponse.swift */; };
@@ -87,12 +87,12 @@
 		762802C621C2528700918F5D /* ConverterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterBuilder.swift; sourceTree = "<group>"; };
 		762802CF21C258CC00918F5D /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
 		762802D121C25B7F00918F5D /* RatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesService.swift; sourceTree = "<group>"; };
-		762802D421C25BAB00918F5D /* RequestHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestHelper.swift; sourceTree = "<group>"; };
+		762802D421C25BAB00918F5D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		762802D621C25C1F00918F5D /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		762802DA21C2636000918F5D /* LatestRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRatesResponse.swift; sourceTree = "<group>"; };
 		762802DC21C265BD00918F5D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		762F80E721D3D3B600FC380B /* ConverterRatesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesHeaderView.swift; sourceTree = "<group>"; };
-		762F80E921D4069B00FC380B /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		762F80E921D4069B00FC380B /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		762F80EB21D4089900FC380B /* ConverterRatesFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesFooterView.swift; sourceTree = "<group>"; };
 		7650B83121D2BC3E0092FE7C /* ConverterRatesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesPresentation.swift; sourceTree = "<group>"; };
 		7650B83621D2C4D80092FE7C /* ConverterRatesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesCell.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		7656AC8621C24BFB00A93A50 /* CurrencyConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7656AC8A21C24BFB00A93A50 /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		7656AC8C21C24BFB00A93A50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7667FB1021D2AE6C005F5815 /* CoreDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelper.swift; sourceTree = "<group>"; };
+		7667FB1021D2AE6C005F5815 /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
 		7667FB1221D2B50F005F5815 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesService.swift; sourceTree = "<group>"; };
 		7667FB1721D2B937005F5815 /* ConverterRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesResponse.swift; sourceTree = "<group>"; };
@@ -237,8 +237,8 @@
 			isa = PBXGroup;
 			children = (
 				762802CF21C258CC00918F5D /* Credentials.swift */,
-				762802D421C25BAB00918F5D /* RequestHelper.swift */,
-				7667FB1021D2AE6C005F5815 /* CoreDataHelper.swift */,
+				762802D421C25BAB00918F5D /* HTTPClient.swift */,
+				7667FB1021D2AE6C005F5815 /* CoreDataClient.swift */,
 				762802D621C25C1F00918F5D /* Result.swift */,
 				76D9CE4A21C4295700592523 /* Presentations */,
 				762802D921C2634800918F5D /* DTOs */,
@@ -284,7 +284,7 @@
 				7650B83621D2C4D80092FE7C /* ConverterRatesCell.swift */,
 				762F80E721D3D3B600FC380B /* ConverterRatesHeaderView.swift */,
 				762F80EB21D4089900FC380B /* ConverterRatesFooterView.swift */,
-				762F80E921D4069B00FC380B /* GradientButton.swift */,
+				762F80E921D4069B00FC380B /* ActionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -609,7 +609,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7667FB1121D2AE6C005F5815 /* CoreDataHelper.swift in Sources */,
+				7667FB1121D2AE6C005F5815 /* CoreDataClient.swift in Sources */,
 				76D9CE4921C4284F00592523 /* ConverterContracts.swift in Sources */,
 				762802DD21C265BD00918F5D /* Currency.swift in Sources */,
 				7667FB1321D2B50F005F5815 /* Rate.swift in Sources */,
@@ -637,10 +637,10 @@
 				76D9CE5721C4456A00592523 /* CurrencyListContracts.swift in Sources */,
 				762802C521C2527C00918F5D /* AppRouter.swift in Sources */,
 				762802D721C25C1F00918F5D /* Result.swift in Sources */,
-				762F80EA21D4069B00FC380B /* GradientButton.swift in Sources */,
+				762F80EA21D4069B00FC380B /* ActionButton.swift in Sources */,
 				762802C721C2528700918F5D /* ConverterBuilder.swift in Sources */,
 				7650B83721D2C4D80092FE7C /* ConverterRatesCell.swift in Sources */,
-				762802D521C25BAB00918F5D /* RequestHelper.swift in Sources */,
+				762802D521C25BAB00918F5D /* HTTPClient.swift in Sources */,
 				762802C021C24F5400918F5D /* ConverterViewController.swift in Sources */,
 				7650B83921D2C8A00092FE7C /* UIView+Extension.swift in Sources */,
 				7667FB1821D2B937005F5815 /* ConverterRatesResponse.swift in Sources */,

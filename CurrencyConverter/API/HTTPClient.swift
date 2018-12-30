@@ -13,13 +13,13 @@ enum Endpoint: String {
     case latest
 }
 
-protocol RequestHelperProtocol {
+protocol HTTPClientProtocol {
     
     static func get(from url: URL, params: [String:String]?, completion: @escaping (DataResponse<Data>) -> Void)
     
 }
 
-struct RequestHelper: RequestHelperProtocol {
+struct HTTPClient: HTTPClientProtocol {
     
     static func get(from url: URL, params: [String:String]?, completion: @escaping (DataResponse<Data>) -> Void) {
         

@@ -48,9 +48,19 @@
                                                         <constraint firstAttribute="height" constant="0.5" id="FP4-7E-5rm"/>
                                                     </constraints>
                                                 </view>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KVh-iQ-q7d" customClass="ActionButton" customModule="CurrencyConverter" customModuleProvider="target">
+                                                    <rect key="frame" x="320" y="7" width="40" height="30"/>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="my1-cs-gdK"/>
+                                                        <constraint firstAttribute="height" constant="30" id="y0R-9r-Vcz"/>
+                                                    </constraints>
+                                                </button>
                                             </subviews>
                                             <color key="backgroundColor" red="0.08235294118" green="0.10980392160000001" blue="0.1960784314" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
+                                                <constraint firstItem="KVh-iQ-q7d" firstAttribute="centerY" secondItem="50W-L2-VPb" secondAttribute="centerY" id="4Rl-nA-ZOa"/>
+                                                <constraint firstAttribute="trailing" secondItem="KVh-iQ-q7d" secondAttribute="trailing" constant="15" id="KLX-vY-Ya6"/>
                                                 <constraint firstItem="nfP-GG-ceT" firstAttribute="centerY" secondItem="dLg-Fp-Xtd" secondAttribute="centerY" id="dZS-W5-Y83"/>
                                                 <constraint firstAttribute="trailing" secondItem="gnq-5e-Zun" secondAttribute="trailing" id="faP-uC-Hmv"/>
                                                 <constraint firstItem="nfP-GG-ceT" firstAttribute="leading" secondItem="dLg-Fp-Xtd" secondAttribute="trailing" constant="23" id="piG-wV-RqQ"/>
@@ -62,6 +72,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <connections>
+                                            <outlet property="actionButton" destination="KVh-iQ-q7d" id="RQR-nf-Jxr"/>
                                             <outlet property="nameLabel" destination="nfP-GG-ceT" id="AIq-YR-Ek0"/>
                                             <outlet property="symbolLabel" destination="dLg-Fp-Xtd" id="2WZ-PG-6Yb"/>
                                         </connections>

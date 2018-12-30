@@ -13,6 +13,7 @@ protocol CurrencyListViewModelProtocol {
     var themeColor: UIColor { get set }
     var delegate: CurrencyListViewModelDelegate? { get set }
     func load(base: String)
+    func actionButtonTapped(_ sender: ActionButton)
 }
 
 enum CurrencyListViewModelOutput {
@@ -21,9 +22,7 @@ enum CurrencyListViewModelOutput {
     case showLatestRates(CurrencyListPresentation)
 }
 
-enum CurrencyListViewRoute {
-    //case currencyList(CurrencyListViewModelProtocol)
-}
+enum CurrencyListViewRoute { }
 
 protocol CurrencyListViewModelDelegate: class {
     func handleViewModelOutput(_ output: CurrencyListViewModelOutput)

@@ -14,7 +14,7 @@ protocol ConverterRatesFooterViewDelegate {
 
 final class ConverterRatesFooterView: UIView {
     
-    public var addCurrencyButton: GradientButton?
+    public var addCurrencyButton: ActionButton?
     public var delegate: ConverterRatesFooterViewDelegate?
 
     public override init(frame: CGRect) {
@@ -22,7 +22,7 @@ final class ConverterRatesFooterView: UIView {
         
         backgroundColor = UIColor.clear
         
-        addCurrencyButton = GradientButton(frame: CGRect(x: 0, y: 0, width: 70, height: 34))
+        addCurrencyButton = ActionButton(frame: CGRect(x: 0, y: 0, width: 70, height: 34))
         addCurrencyButton?.addTarget(self, action: #selector(currencyButtonAction), for: .touchUpInside)
         addCurrencyButton!.translatesAutoresizingMaskIntoConstraints = false
         
