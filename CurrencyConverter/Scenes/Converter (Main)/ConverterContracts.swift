@@ -30,4 +30,5 @@ enum ConverterViewRoute {
 protocol ConverterViewModelDelegate: class {
     func handleViewModelOutput(_ output: ConverterViewModelOutput)
     func navigate(to route: ConverterViewRoute)
+    func check(string: String) -> Bool
 }

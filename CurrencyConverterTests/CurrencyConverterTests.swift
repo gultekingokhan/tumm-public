@@ -11,17 +11,14 @@ import XCTest
 
 class CurrencyConverterTests: XCTestCase {
 
+    private var view: MockView!
+
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        view = MockView()
     }
 
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 
     func testPerformanceExample() {
@@ -30,5 +27,50 @@ class CurrencyConverterTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
-
+    
+    func testCheck() {
+        
+        XCTAssertTrue(view.check(string: "12,4"))
+        XCTAssertFalse(view.check(string: "12,,4"))
+        XCTAssertFalse(view.check(string: "12,4,"))
+        XCTAssertTrue(view.check(string: "12,4222"))
+        XCTAssertFalse(view.check(string: "12,42222"))
+        XCTAssertTrue(view.check(string: "12.4"))
+        XCTAssertFalse(view.check(string: ","))
+        XCTAssertFalse(view.check(string: ",,"))
+        XCTAssertFalse(view.check(string: ",2"))
+    }
 }
+
+
+class MockView: ConverterViewModelDelegate {
+
+    func handleViewModelOutput(_ output: ConverterViewModelOutput) { }
+
+    func navigate(to route: ConverterViewRoute) { }
+
+    func check(string: String) -> Bool {
+        
+        var text = string
+        
+        let numberOfDots = text.components(separatedBy: ",").count - 1
+        
+        let numberOfDecimalDigits: Int
+        if let dotIndex = text.index(of: ",") {
+            numberOfDecimalDigits = text.distance(from: dotIndex, to: text.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+        
+        if numberOfDots <= 1 && numberOfDecimalDigits <= 4 {
+            
+            text = text.replacingOccurrences(of: ",", with: ".")
+            
+            if text.count > 0 {
+                if text.first == "." { return false }
+            }
+            return true
+        } else { return false }
+    }
+}
+

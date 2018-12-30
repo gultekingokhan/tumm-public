@@ -37,6 +37,35 @@ final class ConverterViewController: UIViewController {
 }
 
 extension ConverterViewController: ConverterViewModelDelegate {
+
+    func check(string: String) -> Bool {
+       
+        var text = string
+        
+        let numberOfDots = text.components(separatedBy: ",").count - 1
+        
+        let numberOfDecimalDigits: Int
+        if let dotIndex = text.index(of: ",") {
+            numberOfDecimalDigits = text.distance(from: dotIndex, to: text.endIndex) - 1
+        } else {
+            numberOfDecimalDigits = 0
+        }
+
+        if numberOfDots <= 1 && numberOfDecimalDigits <= 4 {
+            
+            text = text.replacingOccurrences(of: ",", with: ".")
+            
+            if text.count > 0 {
+                
+                if text.first == "." { return false }
+                viewModel.updateRateValues(value: Double(text)!)
+            } else {
+                viewModel.updateRateValues(value: 0)
+            }
+            
+            return true
+        } else { return false }
+    }
     
     func handleViewModelOutput(_ output: ConverterViewModelOutput) {
         
@@ -173,29 +202,7 @@ extension ConverterViewController: UITextFieldDelegate {
         }
         
         let newText = oldText.replacingCharacters(in: r, with: string)
-        //let isNumeric = newText.isEmpty || (Double(newText) != nil)
-        let numberOfDots = newText.components(separatedBy: ",").count - 1
         
-        let numberOfDecimalDigits: Int
-        if let dotIndex = newText.index(of: ",") {
-            numberOfDecimalDigits = newText.distance(from: dotIndex, to: newText.endIndex) - 1
-        } else {
-            numberOfDecimalDigits = 0
-        }
-
-        var replacedText = "0"
-        
-        if (textField.text?.count)! == 0 {
-            replacedText = "0"
-        } else {
-            replacedText = textField.text!.replacingOccurrences(of: ",", with: ".")
-        }
-
-        print("newText:\(replacedText)")
-
-        viewModel.updateRateValues(value: Double(replacedText)!)
-
-        return numberOfDots <= 1 && numberOfDecimalDigits <= 4
+        return check(string: newText)
     }
-    
 }
