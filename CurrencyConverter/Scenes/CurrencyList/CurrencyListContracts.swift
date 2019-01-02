@@ -13,7 +13,7 @@ protocol CurrencyListViewModelProtocol {
     var themeColor: UIColor { get set }
     var delegate: CurrencyListViewModelDelegate? { get set }
     func load(base: String)
-    func actionButtonTapped(_ sender: ActionButton)
+    func actionButtonTapped(rate: Rate)
 }
 
 enum CurrencyListViewModelOutput {

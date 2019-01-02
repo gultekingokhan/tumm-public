@@ -12,7 +12,7 @@ final class CurrencyListPresentation: NSObject {
     
     let base: String
     let date: String
-    let rates: Dictionary<String, [Currency]>
+    let rates: Dictionary<String, [Rate]>
     
     init(base: String, date: String, rates: [String:Double]) {
         self.base = base
@@ -20,7 +20,7 @@ final class CurrencyListPresentation: NSObject {
         
         let symbols = [String](rates.keys)
         
-        var currencies: [Currency] = []
+        var currencies: [Rate] = []
         var countries: [Country] = []
 
         do {
@@ -46,8 +46,8 @@ final class CurrencyListPresentation: NSObject {
                     }
                 }
                 
-                let currency = Currency(symbol: symbol, value: value, country: country)
-                currencies.append(currency)
+                let rate = Rate(value: value, code: symbol, type: .None, name: country.name)
+                currencies.append(rate)
             }
         }
         
@@ -58,14 +58,14 @@ final class CurrencyListPresentation: NSObject {
             var i = 0
             for currency in currencies {
                 for rate in response.rates {
-                    if currency.symbol == rate.code {
+                    if currency.code == rate.code {
                         currencies[i].isAdded = true
                     }
                 }
                 i = i + 1
             }
         }
-        self.rates = Dictionary(grouping: currencies, by: { String($0.symbol.first!) })
+        self.rates = Dictionary(grouping: currencies, by: { String($0.code.first!) })
         
         super.init()
     }

@@ -23,7 +23,7 @@ final class CurrencyListViewController: UIViewController {
         }
     }
     
-    var rates: Dictionary<String, [Currency]> = [:]
+    var rates: Dictionary<String, [Rate]> = [:]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,12 +67,15 @@ extension CurrencyListViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "CurrencyCell", for: indexPath) as! CurrencyListCell
         
         let key = Array(rates.keys)[indexPath.section]
-        let currency = rates[key]![indexPath.row]
+        let rate = rates[key]![indexPath.row]
 
-        cell.load(currency: currency)
+        cell.loadData(rate: rate)
         cell.update(themeColor: viewModel.themeColor)
         
-        cell.actionButton.addTarget(self, action: #selector(action(_:)), for: .touchUpInside)
+        cell.actionButton.addTargetClosure { _ in
+            
+            self.viewModel.actionButtonTapped(rate: rate)
+        }
 
         return cell
     }
@@ -94,7 +97,7 @@ extension CurrencyListViewController: UITableViewDelegate {
         let key = Array(rates.keys)[indexPath.section]
         let rate = rates[key]![indexPath.row]
 
-        let rateToSave = Rate(code: rate.symbol, type: .BUY, name: rate.country.name)
+        let rateToSave = Rate(code: rate.code, type: .BUY, name: rate.name)
         CoreDataClient.save(rate: rateToSave) { (error) in
             print("ERROR: \(String(describing: error))")
         }
@@ -103,10 +106,4 @@ extension CurrencyListViewController: UITableViewDelegate {
 
         dismiss(animated: true, completion: nil)
     }
-    
-    @objc func action(_ sender: ActionButton) {
-        viewModel.actionButtonTapped(sender)
-        // TODO: ADD CLOSURE
-    }
-    
 }

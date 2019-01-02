@@ -22,12 +22,12 @@ public final class CurrencyListCell: UITableViewCell {
         symbolLabel.textColor = themeColor
     }
     
-    public func load(currency: Currency) {
+    func loadData(rate: Rate) {
         
-        symbolLabel.text = currency.symbol
-        nameLabel.text = currency.country.name
+        symbolLabel.text = rate.code
+        nameLabel.text = rate.name
         
-        if currency.isAdded == true {
+        if rate.isAdded == true {
             actionButton.update(actionType: .Remove)
         } else {
             actionButton.update(actionType: .Add)

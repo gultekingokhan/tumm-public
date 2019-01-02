@@ -52,7 +52,8 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
         return ""
     }
     
-    func actionButtonTapped(_ sender: ActionButton) {
-        print("button tapped")
+    func actionButtonTapped(rate: Rate) {
+        print("button tapped: \(rate.code)")
+        
     }
 }

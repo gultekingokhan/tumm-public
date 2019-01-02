@@ -12,7 +12,7 @@ final class ConverterPresentation: NSObject {
     
     let base: String
     let date: String
-    let rates: [Currency]
+    let rates: [Rate]
     
     init(base: String, date: String, rates: [String:Double]) {
         self.base = base
@@ -20,7 +20,7 @@ final class ConverterPresentation: NSObject {
         
         let symbols = [String](rates.keys)
 
-        var currencies: [Currency] = []
+        var currencies: [Rate] = []
         var countries: [Country] = []
         
         do {
@@ -46,8 +46,8 @@ final class ConverterPresentation: NSObject {
                     }
                 }
                 
-                let currency = Currency(symbol: symbol, value: value, country: country)
-                currencies.append(currency)
+                let rate = Rate(value: value, code: symbol, type: .None, name: country.name)
+                currencies.append(rate)
             }
         }
         self.rates = currencies

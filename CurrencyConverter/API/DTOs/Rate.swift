@@ -11,6 +11,13 @@ import Foundation
 public enum RateType: String {
     case SELL
     case BUY
+    case None
+}
+
+extension RateType: Codable {
+    public init(from decoder: Decoder) throws {
+        self = try RateType(rawValue: decoder.singleValueContainer().decode(String.self)) ?? .None
+    }
 }
 
 final class Rate: NSObject {
@@ -20,11 +27,16 @@ final class Rate: NSObject {
     var type: RateType
     var name: String
     var value: Double?
-    
-    init(id: String? = nil, code: String, type: RateType, name: String) {
+    var isAdded: Bool?
+
+    init(id: String? = nil, value: Double? = 0.0, code: String, type: RateType, name: String) {
         self.id = id
+        self.value = value
         self.code = code
         self.type = type
         self.name = name
+        self.isAdded = false
     }
 }
+
+

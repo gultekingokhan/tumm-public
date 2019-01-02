@@ -18,7 +18,6 @@
 		762802D521C25BAB00918F5D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D421C25BAB00918F5D /* HTTPClient.swift */; };
 		762802D721C25C1F00918F5D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D621C25C1F00918F5D /* Result.swift */; };
 		762802DB21C2636000918F5D /* LatestRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802DA21C2636000918F5D /* LatestRatesResponse.swift */; };
-		762802DD21C265BD00918F5D /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802DC21C265BD00918F5D /* Currency.swift */; };
 		762F80E821D3D3B600FC380B /* ConverterRatesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80E721D3D3B600FC380B /* ConverterRatesHeaderView.swift */; };
 		762F80EA21D4069B00FC380B /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80E921D4069B00FC380B /* ActionButton.swift */; };
 		762F80EC21D4089900FC380B /* ConverterRatesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762F80EB21D4089900FC380B /* ConverterRatesFooterView.swift */; };
@@ -41,6 +40,7 @@
 		768204C621CBC063007FDE58 /* CountriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C521CBC063007FDE58 /* CountriesService.swift */; };
 		768204C821CBC179007FDE58 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C721CBC179007FDE58 /* ResourceLoader.swift */; };
 		768204CA21CBC330007FDE58 /* CountryListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C921CBC330007FDE58 /* CountryListTests.swift */; };
+		7684CDEF21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7684CDEE21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift */; };
 		76A9BE9E21D1573900EDE271 /* CurrencyListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9BE9D21D1573900EDE271 /* CurrencyListCell.swift */; };
 		76A9BEA021D158C900EDE271 /* CurrencyListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9BE9F21D158C900EDE271 /* CurrencyListHeaderView.swift */; };
 		76A9BEA221D1647A00EDE271 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A9BEA121D1647A00EDE271 /* UIViewController+Extension.swift */; };
@@ -90,7 +90,6 @@
 		762802D421C25BAB00918F5D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		762802D621C25C1F00918F5D /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		762802DA21C2636000918F5D /* LatestRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatestRatesResponse.swift; sourceTree = "<group>"; };
-		762802DC21C265BD00918F5D /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
 		762F80E721D3D3B600FC380B /* ConverterRatesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesHeaderView.swift; sourceTree = "<group>"; };
 		762F80E921D4069B00FC380B /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		762F80EB21D4089900FC380B /* ConverterRatesFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesFooterView.swift; sourceTree = "<group>"; };
@@ -119,6 +118,7 @@
 		768204C521CBC063007FDE58 /* CountriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesService.swift; sourceTree = "<group>"; };
 		768204C721CBC179007FDE58 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		768204C921CBC330007FDE58 /* CountryListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListTests.swift; sourceTree = "<group>"; };
+		7684CDEE21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+AddTargetClosure.swift"; sourceTree = "<group>"; };
 		76A9BE9D21D1573900EDE271 /* CurrencyListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListCell.swift; sourceTree = "<group>"; };
 		76A9BE9F21D158C900EDE271 /* CurrencyListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListHeaderView.swift; sourceTree = "<group>"; };
 		76A9BEA121D1647A00EDE271 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
@@ -271,7 +271,6 @@
 		762802D921C2634800918F5D /* DTOs */ = {
 			isa = PBXGroup;
 			children = (
-				762802DC21C265BD00918F5D /* Currency.swift */,
 				768204C321CBBF3A007FDE58 /* Country.swift */,
 				7667FB1221D2B50F005F5815 /* Rate.swift */,
 			);
@@ -383,6 +382,7 @@
 				76B7378721D13F1600C61107 /* UINavigationBar+Extension.swift */,
 				76A9BEA121D1647A00EDE271 /* UIViewController+Extension.swift */,
 				7650B83821D2C8A00092FE7C /* UIView+Extension.swift */,
+				7684CDEE21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -611,7 +611,6 @@
 			files = (
 				7667FB1121D2AE6C005F5815 /* CoreDataClient.swift in Sources */,
 				76D9CE4921C4284F00592523 /* ConverterContracts.swift in Sources */,
-				762802DD21C265BD00918F5D /* Currency.swift in Sources */,
 				7667FB1321D2B50F005F5815 /* Rate.swift in Sources */,
 				7650B83221D2BC3E0092FE7C /* ConverterRatesPresentation.swift in Sources */,
 				768204C821CBC179007FDE58 /* ResourceLoader.swift in Sources */,
@@ -621,6 +620,7 @@
 				7656AC6821C24BFA00A93A50 /* AppDelegate.swift in Sources */,
 				762802C321C2527200918F5D /* AppContainer.swift in Sources */,
 				76D9CE4C21C42E2200592523 /* ConverterPresentation.swift in Sources */,
+				7684CDEF21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift in Sources */,
 				76D9CE5321C4454200592523 /* CurrencyListViewModel.swift in Sources */,
 				762802DB21C2636000918F5D /* LatestRatesResponse.swift in Sources */,
 				768204C421CBBF3A007FDE58 /* Country.swift in Sources */,

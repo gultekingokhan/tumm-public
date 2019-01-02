@@ -14,6 +14,8 @@ protocol CoreDataClientProcotol {
 
     static func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void)
     static func fetch() -> [Rate]
+    static func remove(rate: Rate)
+    
 }
 
 struct CoreDataClient: CoreDataClientProcotol {
@@ -73,5 +75,9 @@ struct CoreDataClient: CoreDataClientProcotol {
         } catch _ {
             return []
         }
+    }
+    
+    static func remove(rate: Rate) {
+        
     }
 }
