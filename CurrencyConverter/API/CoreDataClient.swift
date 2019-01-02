@@ -76,8 +76,26 @@ struct CoreDataClient: CoreDataClientProcotol {
             return []
         }
     }
-    
+
     static func remove(rate: Rate) {
         
+        guard let id = rate.id else {
+            return
+        }
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
+        request.predicate = NSPredicate(format: "id = %@", id)
+        request.returnsObjectsAsFaults = false
+        let objects = try! context.fetch(request)
+        for obj in objects as! [NSManagedObject]  {
+            context.delete(obj)
+        }
+        
+        do {
+            try context.save() // <- remember to put this :)
+        } catch {
+            fatalError()
+            // Do something... fatalerror
+        }
     }
 }

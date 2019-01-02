@@ -60,6 +60,7 @@ final class CurrencyListPresentation: NSObject {
                 for rate in response.rates {
                     if currency.code == rate.code {
                         currencies[i].isAdded = true
+                        currencies[i].id = rate.id
                     }
                 }
                 i = i + 1

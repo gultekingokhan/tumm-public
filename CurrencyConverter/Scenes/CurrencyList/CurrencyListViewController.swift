@@ -73,8 +73,21 @@ extension CurrencyListViewController: UITableViewDataSource {
         cell.update(themeColor: viewModel.themeColor)
         
         cell.actionButton.addTargetClosure { _ in
-            
-            self.viewModel.actionButtonTapped(rate: rate)
+        
+            self.viewModel.actionButtonTapped(rate: rate, completion: { (isAdded) in
+                
+                if isAdded == true {
+                    cell.actionButton.update(actionType: .Remove)
+                } else {
+                    cell.actionButton.update(actionType: .Add)
+                }
+
+                rate.isAdded = isAdded
+                
+                self.delegate?.updateData()
+                //self.dismiss(animated: true, completion: nil)
+
+            })
         }
 
         return cell
@@ -93,7 +106,7 @@ extension CurrencyListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
+        /*
         let key = Array(rates.keys)[indexPath.section]
         let rate = rates[key]![indexPath.row]
 
@@ -105,5 +118,6 @@ extension CurrencyListViewController: UITableViewDelegate {
         self.delegate?.updateData()
 
         dismiss(animated: true, completion: nil)
+         */
     }
 }

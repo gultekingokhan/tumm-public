@@ -52,8 +52,17 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
         return ""
     }
     
-    func actionButtonTapped(rate: Rate) {
-        print("button tapped: \(rate.code)")
+    func actionButtonTapped(rate: Rate, completion: @escaping (Bool) -> Void) {
         
+        if rate.isAdded == true {
+            
+            CoreDataClient.remove(rate: rate)
+            
+        } else {
+            rate.type = .BUY
+            CoreDataClient.save(rate: rate) { (error) in }
+        }
+        
+        completion(!rate.isAdded!)
     }
 }
