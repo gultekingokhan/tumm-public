@@ -11,7 +11,7 @@ import Foundation
 protocol ConverterViewModelProtocol {
     var delegate: ConverterViewModelDelegate? { get set }
     func load()
-    func addCurrency(with rateType: RateType)
+    func updateSavedCurrencies(with rateType: RateType, isUpdating: Bool, selectedRate: Rate?)
     func updateRateValues(value: Double)
 }
 

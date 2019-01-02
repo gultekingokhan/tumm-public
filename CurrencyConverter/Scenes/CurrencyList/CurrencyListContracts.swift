@@ -11,6 +11,8 @@ import UIKit
 
 protocol CurrencyListViewModelProtocol {
     var themeColor: UIColor { get set }
+    var isUpdating: Bool { get set }
+    var selectedRate: Rate? { get set } 
     var delegate: CurrencyListViewModelDelegate? { get set }
     func load(base: String)
     func actionButtonTapped(rate: Rate, completion: @escaping(_ isAdded: Bool) -> Void)

@@ -123,11 +123,6 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "Icon-App-76x76@2x.png",
-      "scale" : "2x"
-    },
-    {
-      "idiom" : "universal",
       "filename" : "Icon-App-40x40@1x.png",
       "unassigned" : true,
       "scale" : "1x"
@@ -159,6 +154,12 @@
     {
       "idiom" : "universal",
       "filename" : "Icon-98@2x.png",
+      "unassigned" : true,
+      "scale" : "2x"
+    },
+    {
+      "idiom" : "universal",
+      "filename" : "Icon-App-76x76@2x.png",
       "unassigned" : true,
       "scale" : "2x"
     },

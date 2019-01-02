@@ -79,9 +79,7 @@ struct CoreDataClient: CoreDataClientProcotol {
 
     static func remove(rate: Rate) {
         
-        guard let id = rate.id else {
-            return
-        }
+        guard let id = rate.id else { return }
 
         let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
         request.predicate = NSPredicate(format: "id = %@", id)
@@ -95,7 +93,31 @@ struct CoreDataClient: CoreDataClientProcotol {
             try context.save() // <- remember to put this :)
         } catch {
             fatalError()
-            // Do something... fatalerror
+        }
+    }
+    
+    static func update(oldRate: Rate, newRate: Rate) {
+     
+        guard let id = oldRate.id else { return }
+
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
+        request.predicate = NSPredicate(format: "id = %@", id)
+        request.returnsObjectsAsFaults = false
+        
+        do {
+            let results = try context.fetch(request)
+            
+            if results.count > 0 {
+                
+                for result in results as! [NSManagedObject] {
+                    
+                    result.setValue(newRate.name, forKey: "name")
+                    result.setValue(newRate.code, forKey: "code")
+                    result.setValue(oldRate.type.rawValue, forKey: "type")
+                }
+            }
+        } catch {
+            fatalError()
         }
     }
 }

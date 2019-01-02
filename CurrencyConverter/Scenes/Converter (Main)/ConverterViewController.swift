@@ -29,11 +29,6 @@ final class ConverterViewController: UIViewController {
         viewModel.load()
     }
     
-    @IBAction func allCurrenciesButtonTapped(_ sender: Any) {
-//        let viewController = CurrencyListBuilder.make(with: <#CurrencyListViewModelProtocol#>)
-//        present(viewController, animated: true, completion: nil)
-    }
-    
 }
 
 extension ConverterViewController: ConverterViewModelDelegate {
@@ -173,17 +168,23 @@ extension ConverterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        var rateType = RateType.SELL.rawValue
-        if indexPath.section == 1 { rateType = RateType.BUY.rawValue }
-
-        viewModel.addCurrency(with: RateType(rawValue: rateType)!)
+        var key = RateType.SELL.rawValue
+        
+        if indexPath.section == 1 { key = RateType.BUY.rawValue }
+    
+        if let _rates = rates[key] {
+            let rate = _rates[indexPath.row]
+            viewModel.updateSavedCurrencies(with: RateType(rawValue: key)!,
+                                            isUpdating: true,
+                                            selectedRate: rate)
+        }
     }
 }
 
 extension ConverterViewController: ConverterRatesFooterViewDelegate {
     
     func addCurrencyButtonTapped() {
-        viewModel.addCurrency(with: .BUY)
+        viewModel.updateSavedCurrencies(with: .BUY, isUpdating: false, selectedRate: nil)
     }
 }
 

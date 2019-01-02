@@ -10,16 +10,20 @@ import Foundation
 import UIKit
 
 final class CurrencyListViewModel: CurrencyListViewModelProtocol {
-    
+
+    var isUpdating: Bool
     var themeColor: UIColor = UIColor.lightSalmon
+    var selectedRate: Rate?
     weak var delegate: CurrencyListViewModelDelegate?
     private let service: RatesServiceProtocol
     private var rates: LatestRatesResponse? = nil
     private let rateType: RateType
     
-    init(service: RatesServiceProtocol, rateType: RateType) {
+    init(service: RatesServiceProtocol, rateType: RateType, isUpdating: Bool, selectedRate: Rate? = nil) {
         self.service = service
         self.rateType = rateType
+        self.isUpdating = isUpdating
+        self.selectedRate = selectedRate
     }
     
     func load(base: String) {
@@ -46,10 +50,6 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
     
     private func notify(_ output: CurrencyListViewModelOutput) {
         delegate?.handleViewModelOutput(output)
-    }
-    
-    public func convert(from symbol: String) -> String {
-        return ""
     }
     
     func actionButtonTapped(rate: Rate, completion: @escaping (Bool) -> Void) {

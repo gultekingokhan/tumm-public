@@ -72,6 +72,10 @@ extension CurrencyListViewController: UITableViewDataSource {
         cell.loadData(rate: rate)
         cell.update(themeColor: viewModel.themeColor)
         
+        if viewModel.isUpdating == true {
+            cell.actionButton.isHidden = true
+        }
+        
         cell.actionButton.addTargetClosure { _ in
         
             self.viewModel.actionButtonTapped(rate: rate, completion: { (isAdded) in
@@ -85,8 +89,6 @@ extension CurrencyListViewController: UITableViewDataSource {
                 rate.isAdded = isAdded
                 
                 self.delegate?.updateData()
-                //self.dismiss(animated: true, completion: nil)
-
             })
         }
 
@@ -107,9 +109,6 @@ extension CurrencyListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         /*
-        let key = Array(rates.keys)[indexPath.section]
-        let rate = rates[key]![indexPath.row]
-
         let rateToSave = Rate(code: rate.code, type: .BUY, name: rate.name)
         CoreDataClient.save(rate: rateToSave) { (error) in
             print("ERROR: \(String(describing: error))")
@@ -119,5 +118,18 @@ extension CurrencyListViewController: UITableViewDelegate {
 
         dismiss(animated: true, completion: nil)
          */
+        
+        
+        let key = Array(rates.keys)[indexPath.section]
+        let rate = rates[key]![indexPath.row]
+        
+        guard let selectedRate = viewModel.selectedRate else {
+            return
+        }
+ 
+        CoreDataClient.update(oldRate: selectedRate, newRate: rate)
+        
+        self.delegate?.updateData()
+        dismiss(animated: true, completion: nil)
     }
 }

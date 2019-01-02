@@ -29,8 +29,8 @@ final class ConverterViewModel: ConverterViewModelProtocol {
             if response.rates.count == 0 { _rates = self.defaultRates() } else {
                 _rates = response.rates
                 
-                let presentation = ConverterRatesPresentation(rates: _rates)
-                self.notify(.showConverterRates(presentation))
+                //let presentation = ConverterRatesPresentation(rates: _rates)
+                //self.notify(.showConverterRates(presentation))
             }
             
             let base = _rates.first?.code
@@ -107,9 +107,9 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         delegate?.handleViewModelOutput(output)
     }
     
-    func addCurrency(with rateType: RateType) {
+    func updateSavedCurrencies(with rateType: RateType, isUpdating: Bool, selectedRate: Rate?) {
         let currencyListService = RatesService()
-        let viewModel = CurrencyListViewModel(service: currencyListService, rateType: rateType)
+        let viewModel = CurrencyListViewModel(service: currencyListService, rateType: rateType, isUpdating: isUpdating, selectedRate: selectedRate)
         delegate?.navigate(to: .currencyList(viewModel))
     }
     
