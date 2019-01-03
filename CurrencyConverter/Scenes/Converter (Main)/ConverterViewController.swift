@@ -24,6 +24,7 @@ final class ConverterViewController: UIViewController {
         super.viewDidLoad()
 
         navigationController?.navigationBar.customize(supportsLargeTitle: true)
+        tableView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.interactive
         addSettingsButton()
         
         viewModel.load()
