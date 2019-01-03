@@ -25,6 +25,7 @@ enum ConverterViewModelOutput {
 
 enum ConverterViewRoute {
     case currencyList(CurrencyListViewModelProtocol)
+    case preferences()
 }
 
 protocol ConverterViewModelDelegate: class {

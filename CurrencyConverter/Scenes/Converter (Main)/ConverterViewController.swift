@@ -23,14 +23,23 @@ final class ConverterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        customizeViews()
+        viewModel.load()
+    }
+    
+    func customizeViews () {
         navigationController?.navigationBar.customize(supportsLargeTitle: true)
         tableView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.interactive
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
-        addSettingsButton()
         
-        viewModel.load()
+        let settingsButtonItem = UIBarButtonItem(image: UIImage(named: "settingsIcon"), style: .plain, target: self, action: #selector(preferencesButtonTapped))
+        settingsButtonItem.tintColor = UIColor.rosyPink
+        navigationItem.rightBarButtonItem = settingsButtonItem
+    }
+    
+    @objc func preferencesButtonTapped() {
+        navigate(to: .preferences())
     }
 }
 
@@ -91,6 +100,9 @@ extension ConverterViewController: ConverterViewModelDelegate {
             viewController.delegate = self
             let navigationController = UINavigationController(rootViewController: viewController)
             show(navigationController, sender: self)
+        case .preferences(_):
+            let viewController = PreferencesBuilder.make()
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
 }

@@ -15,6 +15,7 @@ extension UINavigationBar {
         self.isTranslucent = false
         self.prefersLargeTitles = supportsLargeTitle
         self.barTintColor = UIColor.darkTwo
+        self.tintColor = UIColor.white
         self.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont(name: "Avenir-Book", size: 13)!]
         self.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white, NSAttributedString.Key.font : UIFont(name: "Avenir-Heavy", size: 34)!]
     }
