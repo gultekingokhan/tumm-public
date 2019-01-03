@@ -32,16 +32,11 @@ final class ConverterViewModel: ConverterViewModelProtocol {
                 //let presentation = ConverterRatesPresentation(rates: _rates)
                 //self.notify(.showConverterRates(presentation))
             }
-            
-            
-            //self.rates = Dictionary(grouping: currencies, by: { String($0.code.first!) })
 
             var base = ""
 
             for rate in _rates {
-                if rate.type == .SELL {
-                    base = rate.code
-                }
+                if rate.type == .SELL { base = rate.code }
             }
             
             if base.count == 0 { base = (_rates.first?.code)! }

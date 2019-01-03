@@ -11,7 +11,8 @@ import UIKit
 final class ConverterViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+    private let refreshControl = UIRefreshControl()
+
     var viewModel: ConverterViewModelProtocol! {
         didSet {
             viewModel.delegate = self
@@ -25,11 +26,12 @@ final class ConverterViewController: UIViewController {
 
         navigationController?.navigationBar.customize(supportsLargeTitle: true)
         tableView.keyboardDismissMode = UIScrollView.KeyboardDismissMode.interactive
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(updateData), for: .valueChanged)
         addSettingsButton()
         
         viewModel.load()
     }
-    
 }
 
 extension ConverterViewController: ConverterViewModelDelegate {
@@ -115,32 +117,22 @@ extension ConverterViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ConverterRatesCell", for: indexPath) as! ConverterRatesCell
 
-        var key = RateType.SELL.rawValue
+        var key = ""
 
-        if indexPath.section == 1 { key = RateType.BUY.rawValue }
+        switch indexPath.section {
+        case 0:
+            cell.rateTextField?.delegate = self
+            key = RateType.SELL.rawValue
+        case 1:
+            key = RateType.BUY.rawValue
+        default: break
+        }
         
         if let _rates = rates[key] {
             
             let rate = _rates[indexPath.row]
-            
-            cell.codeLabel?.text = rate.code
-          
-            var valueString = ""
-            
-            if let value = rate.value {
-                valueString = String(format: "%.2f", value)
-            }
-            
-            if indexPath.section == 0 {
-                cell.valueLabel.isHidden = true
-                cell.rateTextField?.isHidden = false
-                cell.rateTextField?.text = valueString
-                cell.rateTextField?.delegate = self
-            } else {
-                cell.valueLabel.isHidden = false
-                cell.rateTextField?.isHidden = true
-                cell.valueLabel?.text = valueString
-            }
+           
+            cell.loadData(indexPath: indexPath, rate: rate)
         }
 
         return cell
@@ -190,7 +182,8 @@ extension ConverterViewController: ConverterRatesFooterViewDelegate {
 }
 
 extension ConverterViewController: CurrencyListViewControllerDelegate {
-    func updateData() {
+    @objc func updateData() {
+        refreshControl.endRefreshing()
         viewModel.load()
     }
 }
