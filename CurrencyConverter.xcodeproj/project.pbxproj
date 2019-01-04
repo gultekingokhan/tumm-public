@@ -18,7 +18,7 @@
 		762802C321C2527200918F5D /* AppContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802C221C2527200918F5D /* AppContainer.swift */; };
 		762802C521C2527C00918F5D /* AppRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802C421C2527C00918F5D /* AppRouter.swift */; };
 		762802C721C2528700918F5D /* ConverterBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802C621C2528700918F5D /* ConverterBuilder.swift */; };
-		762802D021C258CC00918F5D /* Credentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802CF21C258CC00918F5D /* Credentials.swift */; };
+		762802D021C258CC00918F5D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802CF21C258CC00918F5D /* Constants.swift */; };
 		762802D221C25B7F00918F5D /* RatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D121C25B7F00918F5D /* RatesService.swift */; };
 		762802D521C25BAB00918F5D /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D421C25BAB00918F5D /* HTTPClient.swift */; };
 		762802D721C25C1F00918F5D /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762802D621C25C1F00918F5D /* Result.swift */; };
@@ -39,6 +39,8 @@
 		7667FB1321D2B50F005F5815 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1221D2B50F005F5815 /* Rate.swift */; };
 		7667FB1621D2B8BD005F5815 /* ConverterRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */; };
 		7667FB1821D2B937005F5815 /* ConverterRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1721D2B937005F5815 /* ConverterRatesResponse.swift */; };
+		766C303E21DFCA660054170B /* PreferencesPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C303D21DFCA660054170B /* PreferencesPresentation.swift */; };
+		766C304021DFD4D90054170B /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C303F21DFD4D90054170B /* StoreReviewHelper.swift */; };
 		768204BE21CBBE07007FDE58 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 768204BD21CBBE07007FDE58 /* countries.json */; };
 		768204C221CBBEC7007FDE58 /* CountriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C121CBBEC7007FDE58 /* CountriesResponse.swift */; };
 		768204C421CBBF3A007FDE58 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C321CBBF3A007FDE58 /* Country.swift */; };
@@ -95,7 +97,7 @@
 		762802C221C2527200918F5D /* AppContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContainer.swift; sourceTree = "<group>"; };
 		762802C421C2527C00918F5D /* AppRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRouter.swift; sourceTree = "<group>"; };
 		762802C621C2528700918F5D /* ConverterBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterBuilder.swift; sourceTree = "<group>"; };
-		762802CF21C258CC00918F5D /* Credentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Credentials.swift; sourceTree = "<group>"; };
+		762802CF21C258CC00918F5D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		762802D121C25B7F00918F5D /* RatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesService.swift; sourceTree = "<group>"; };
 		762802D421C25BAB00918F5D /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		762802D621C25C1F00918F5D /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -122,6 +124,8 @@
 		7667FB1221D2B50F005F5815 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
 		7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesService.swift; sourceTree = "<group>"; };
 		7667FB1721D2B937005F5815 /* ConverterRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesResponse.swift; sourceTree = "<group>"; };
+		766C303D21DFCA660054170B /* PreferencesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPresentation.swift; sourceTree = "<group>"; };
+		766C303F21DFD4D90054170B /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		768204BD21CBBE07007FDE58 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		768204C121CBBEC7007FDE58 /* CountriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesResponse.swift; sourceTree = "<group>"; };
 		768204C321CBBF3A007FDE58 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
@@ -266,7 +270,7 @@
 		762802CE21C2586500918F5D /* API */ = {
 			isa = PBXGroup;
 			children = (
-				762802CF21C258CC00918F5D /* Credentials.swift */,
+				762802CF21C258CC00918F5D /* Constants.swift */,
 				762802D421C25BAB00918F5D /* HTTPClient.swift */,
 				7667FB1021D2AE6C005F5815 /* CoreDataClient.swift */,
 				762802D621C25C1F00918F5D /* Result.swift */,
@@ -389,6 +393,7 @@
 				76D9CE4B21C42E2200592523 /* ConverterPresentation.swift */,
 				7650B83121D2BC3E0092FE7C /* ConverterRatesPresentation.swift */,
 				76C8958321CB93B500D581E7 /* CurrencyListPresentation.swift */,
+				766C303D21DFCA660054170B /* PreferencesPresentation.swift */,
 			);
 			path = Presentations;
 			sourceTree = "<group>";
@@ -414,6 +419,7 @@
 				76A9BEA121D1647A00EDE271 /* UIViewController+Extension.swift */,
 				7650B83821D2C8A00092FE7C /* UIView+Extension.swift */,
 				7684CDEE21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift */,
+				766C303F21DFD4D90054170B /* StoreReviewHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -667,11 +673,13 @@
 				76D9CE5121C4453800592523 /* CurrencyListBuilder.swift in Sources */,
 				762802D221C25B7F00918F5D /* RatesService.swift in Sources */,
 				76C8958421CB93B500D581E7 /* CurrencyListPresentation.swift in Sources */,
-				762802D021C258CC00918F5D /* Credentials.swift in Sources */,
+				766C303E21DFCA660054170B /* PreferencesPresentation.swift in Sources */,
+				762802D021C258CC00918F5D /* Constants.swift in Sources */,
 				760A06E421DEA89400094EFA /* PreferencesContracts.swift in Sources */,
 				76D9CE5721C4456A00592523 /* CurrencyListContracts.swift in Sources */,
 				762802C521C2527C00918F5D /* AppRouter.swift in Sources */,
 				762802D721C25C1F00918F5D /* Result.swift in Sources */,
+				766C304021DFD4D90054170B /* StoreReviewHelper.swift in Sources */,
 				762F80EA21D4069B00FC380B /* ActionButton.swift in Sources */,
 				762802C721C2528700918F5D /* ConverterBuilder.swift in Sources */,
 				7650B83721D2C4D80092FE7C /* ConverterRatesCell.swift in Sources */,
@@ -862,7 +870,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gokhan.tumm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -881,7 +889,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.gokhan.tumm;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

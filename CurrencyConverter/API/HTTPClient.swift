@@ -23,13 +23,13 @@ struct HTTPClient: HTTPClientProtocol {
     
     static func get(from url: URL, params: [String:String]?, completion: @escaping (DataResponse<Data>) -> Void) {
         
-        request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: Credentials.API.headers).responseData { (response) in
+        request(url, method: .get, parameters: params, encoding: URLEncoding.default, headers: Constants.API.headers).responseData { (response) in
             completion(response)
         }
     }
     
     static func makeURL(with endpoint: Endpoint) -> URL {
-        let urlString = Credentials.API.base_url + endpoint.rawValue
+        let urlString = Constants.API.base_url + endpoint.rawValue
         return URL(string: urlString)!
     }
 }

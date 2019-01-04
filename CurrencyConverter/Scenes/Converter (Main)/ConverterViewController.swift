@@ -23,6 +23,9 @@ final class ConverterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        StoreReviewHelper.checkAndAskForReview()
+        
         customizeViews()
         viewModel.load()
     }

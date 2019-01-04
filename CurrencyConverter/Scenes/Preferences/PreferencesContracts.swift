@@ -6,15 +6,22 @@
 //  Copyright © 2019 Gokhan Gultekin. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 protocol PreferencesViewModelProtocol {
     var delegate: PreferencesViewModelDelegate? { get set }
     func load()
+    func openTwitterProfile()
+    func rateApp()
+    func shareApp()
+    func aboutApp()
 }
 
 enum PreferencesViewModelOutput {
     case updateTitle(String)
+    case showList(PreferencesPresentation)
+    case updateVersionLabel(String)
+    case presentActivityController(UIActivityViewController)
 }
 
 protocol PreferencesViewModelDelegate: class {

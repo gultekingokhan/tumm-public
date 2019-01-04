@@ -18,6 +18,8 @@ final class AppRouter {
     
     func start() {
     
+        StoreReviewHelper.incrementAppOpenedCount()
+        
         let viewController = ConverterBuilder.make()
         let navigationController = UINavigationController(rootViewController: viewController)
         window.rootViewController = navigationController
