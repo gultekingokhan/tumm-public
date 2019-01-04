@@ -51,9 +51,9 @@ final class CurrencyListPresentation: NSObject {
             }
         }
         
-        let service = ConverterRatesService()
+        let service = RatesService()
         
-        service.fetchRates { (response) in
+        service.fetchSavedRates { (response) in
             
             var i = 0
             for currency in currencies {

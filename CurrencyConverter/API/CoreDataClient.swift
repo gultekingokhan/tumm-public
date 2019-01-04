@@ -20,6 +20,16 @@ protocol CoreDataClientProcotol {
 
 struct CoreDataClient: CoreDataClientProcotol {
    
+    enum CDError: Error {
+        case saveError
+        case updateError
+        case removeError
+    }
+    
+    enum Entity: String {
+        case RateModel
+    }
+    
     static private var context: NSManagedObjectContext {
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         return appDelegate.persistentContainer.viewContext
@@ -27,7 +37,7 @@ struct CoreDataClient: CoreDataClientProcotol {
     
     static func save(rate: Rate, failure: @escaping(_ error: Error?) -> Void) {
         
-        let entity = NSEntityDescription.entity(forEntityName: "RateModel", in: context)
+        let entity = NSEntityDescription.entity(forEntityName: Entity.RateModel.rawValue, in: context)
         let newRateModel = NSManagedObject(entity: entity!, insertInto: context)
         
         let objectID = newRateModel.objectID.uriRepresentation().absoluteString
@@ -47,8 +57,7 @@ struct CoreDataClient: CoreDataClientProcotol {
     
     static func fetch() -> [Rate] {
         // TODO: Add completion block and fetch them asynchronously.
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
-        //request.predicate = NSPredicate(format: "age = %@", "12")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: Entity.RateModel.rawValue)
         request.returnsObjectsAsFaults = false
         
         do {
@@ -81,7 +90,7 @@ struct CoreDataClient: CoreDataClientProcotol {
         
         guard let id = rate.id else { return }
 
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: Entity.RateModel.rawValue)
         request.predicate = NSPredicate(format: "id = %@", id)
         request.returnsObjectsAsFaults = false
         let objects = try! context.fetch(request)
@@ -100,7 +109,7 @@ struct CoreDataClient: CoreDataClientProcotol {
      
         guard let id = oldRate.id else { return }
 
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "RateModel")
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: Entity.RateModel.rawValue)
         request.predicate = NSPredicate(format: "id = %@", id)
         request.returnsObjectsAsFaults = false
         

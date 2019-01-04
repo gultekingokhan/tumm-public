@@ -37,14 +37,12 @@
 		7656AC8B21C24BFB00A93A50 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7656AC8A21C24BFB00A93A50 /* CurrencyConverterUITests.swift */; };
 		7667FB1121D2AE6C005F5815 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1021D2AE6C005F5815 /* CoreDataClient.swift */; };
 		7667FB1321D2B50F005F5815 /* Rate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1221D2B50F005F5815 /* Rate.swift */; };
-		7667FB1621D2B8BD005F5815 /* ConverterRatesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */; };
 		7667FB1821D2B937005F5815 /* ConverterRatesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667FB1721D2B937005F5815 /* ConverterRatesResponse.swift */; };
 		766C303E21DFCA660054170B /* PreferencesPresentation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C303D21DFCA660054170B /* PreferencesPresentation.swift */; };
 		766C304021DFD4D90054170B /* StoreReviewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766C303F21DFD4D90054170B /* StoreReviewHelper.swift */; };
 		768204BE21CBBE07007FDE58 /* countries.json in Resources */ = {isa = PBXBuildFile; fileRef = 768204BD21CBBE07007FDE58 /* countries.json */; };
 		768204C221CBBEC7007FDE58 /* CountriesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C121CBBEC7007FDE58 /* CountriesResponse.swift */; };
 		768204C421CBBF3A007FDE58 /* Country.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C321CBBF3A007FDE58 /* Country.swift */; };
-		768204C621CBC063007FDE58 /* CountriesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C521CBC063007FDE58 /* CountriesService.swift */; };
 		768204C821CBC179007FDE58 /* ResourceLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C721CBC179007FDE58 /* ResourceLoader.swift */; };
 		768204CA21CBC330007FDE58 /* CountryListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768204C921CBC330007FDE58 /* CountryListTests.swift */; };
 		7684CDEF21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7684CDEE21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift */; };
@@ -122,14 +120,12 @@
 		7656AC8C21C24BFB00A93A50 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7667FB1021D2AE6C005F5815 /* CoreDataClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
 		7667FB1221D2B50F005F5815 /* Rate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rate.swift; sourceTree = "<group>"; };
-		7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesService.swift; sourceTree = "<group>"; };
 		7667FB1721D2B937005F5815 /* ConverterRatesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterRatesResponse.swift; sourceTree = "<group>"; };
 		766C303D21DFCA660054170B /* PreferencesPresentation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesPresentation.swift; sourceTree = "<group>"; };
 		766C303F21DFD4D90054170B /* StoreReviewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreReviewHelper.swift; sourceTree = "<group>"; };
 		768204BD21CBBE07007FDE58 /* countries.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countries.json; sourceTree = "<group>"; };
 		768204C121CBBEC7007FDE58 /* CountriesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesResponse.swift; sourceTree = "<group>"; };
 		768204C321CBBF3A007FDE58 /* Country.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Country.swift; sourceTree = "<group>"; };
-		768204C521CBC063007FDE58 /* CountriesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountriesService.swift; sourceTree = "<group>"; };
 		768204C721CBC179007FDE58 /* ResourceLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResourceLoader.swift; sourceTree = "<group>"; };
 		768204C921CBC330007FDE58 /* CountryListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListTests.swift; sourceTree = "<group>"; };
 		7684CDEE21DD4DE000FABC6E /* UIButton+AddTargetClosure.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+AddTargetClosure.swift"; sourceTree = "<group>"; };
@@ -286,8 +282,6 @@
 			isa = PBXGroup;
 			children = (
 				762802D121C25B7F00918F5D /* RatesService.swift */,
-				768204C521CBC063007FDE58 /* CountriesService.swift */,
-				7667FB1521D2B8BD005F5815 /* ConverterRatesService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -688,9 +682,7 @@
 				7650B83921D2C8A00092FE7C /* UIView+Extension.swift in Sources */,
 				7667FB1821D2B937005F5815 /* ConverterRatesResponse.swift in Sources */,
 				760A06E021DEA87F00094EFA /* PreferencesViewController.swift in Sources */,
-				768204C621CBC063007FDE58 /* CountriesService.swift in Sources */,
 				76EA5D9B21C6D9F000D14A38 /* UIColor+Extension.swift in Sources */,
-				7667FB1621D2B8BD005F5815 /* ConverterRatesService.swift in Sources */,
 				76A9BEA221D1647A00EDE271 /* UIViewController+Extension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

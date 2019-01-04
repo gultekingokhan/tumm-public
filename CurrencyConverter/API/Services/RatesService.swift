@@ -11,6 +11,7 @@ import Foundation
 public protocol RatesServiceProtocol {
 
     func fetchLatestRates(base: String, completion: @escaping (Result<LatestRatesResponse>) -> Void)
+    func fetchSavedRates(completion: @escaping (_ response: ConverterRatesResponse) -> Void)
 }
 
 public class RatesService: RatesServiceProtocol {
@@ -40,5 +41,11 @@ public class RatesService: RatesServiceProtocol {
                 completion(.failure(Error.networkError(internal: error)))
             }
         }
+    }
+    
+    public func fetchSavedRates(completion: @escaping (_ response: ConverterRatesResponse) -> Void) {
+        
+        let rates = CoreDataClient.fetch()
+        completion(ConverterRatesResponse(rates: rates))
     }
 }

@@ -11,18 +11,18 @@ import Foundation
 final class ConverterViewModel: ConverterViewModelProtocol {
     
     weak var delegate: ConverterViewModelDelegate?
-    private let service: ConverterRatesServiceProtocol
+    private let service: RatesServiceProtocol
     private var rates: [Rate] = []
     private var latestRates: [String: Double] = [:]
     
-    init(service: ConverterRatesServiceProtocol) {
+    init(service: RatesServiceProtocol) {
         self.service = service
     }
     
     func load() {
         notify(.updateTitle("Tumm"))
         
-        service.fetchRates { (response) in
+        service.fetchSavedRates { (response) in
    
             var _rates: [Rate] = []
             
