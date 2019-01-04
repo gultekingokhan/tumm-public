@@ -56,11 +56,11 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
         
         if rate.isAdded == true {
             
-            CoreDataClient.remove(rate: rate)
+            CoreDataClient.remove(rate: rate) { }
             
         } else {
             rate.type = .BUY
-            CoreDataClient.save(rate: rate) { (error) in }
+            CoreDataClient.save(rate: rate) { }
         }
         
         completion(!rate.isAdded!)

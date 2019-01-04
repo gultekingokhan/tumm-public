@@ -7,6 +7,7 @@
 //
 
 import XCTest
+import CoreData
 @testable import CurrencyConverter
 
 class CurrencyConverterTests: XCTestCase {
@@ -40,8 +41,8 @@ class CurrencyConverterTests: XCTestCase {
         XCTAssertFalse(view.check(string: ",,"))
         XCTAssertFalse(view.check(string: ",2"))
     }
+    
 }
-
 
 class MockView: ConverterViewModelDelegate {
 

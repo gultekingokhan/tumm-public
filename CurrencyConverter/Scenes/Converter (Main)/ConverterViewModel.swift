@@ -26,11 +26,17 @@ final class ConverterViewModel: ConverterViewModelProtocol {
    
             var _rates: [Rate] = []
             
-            if response.rates.count == 0 { _rates = self.defaultRates() } else {
+            if response.rates.count == 0 {
+                
+                self.defaultRates(completion: { (defaultRates) in
+                    _rates = defaultRates
+                })
+                
+            } else {
                 _rates = response.rates
                 
-                //let presentation = ConverterRatesPresentation(rates: _rates)
-                //self.notify(.showConverterRates(presentation))
+                let presentation = ConverterRatesPresentation(rates: _rates)
+                self.notify(.showConverterRates(presentation))
             }
 
             var base = ""
@@ -119,14 +125,16 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         delegate?.navigate(to: .currencyList(viewModel))
     }
     
-    func defaultRates() -> [Rate] {
-        // TODO: Get these rates from Code Data.
+    func defaultRates(completion:@escaping(_ rates: [Rate]) -> Void) {
+        
         let rateUSD = Rate(id: NSUUID().uuidString.lowercased(), code: "USD", type: .SELL, name: "United States dollar")
         let rateEUR = Rate(id: NSUUID().uuidString.lowercased(), code: "EUR", type: .BUY, name: "European Euro")
+       
+        CoreDataClient.save(rate: rateUSD) { }
+        CoreDataClient.save(rate: rateEUR) { }
         
-        CoreDataClient.save(rate: rateUSD) { (error) in }
-        CoreDataClient.save(rate: rateEUR) { (error) in }
-
-        return CoreDataClient.fetch()
+        CoreDataClient.fetch(completion: { (rates) in
+            completion(rates)
+        })
     }
 }

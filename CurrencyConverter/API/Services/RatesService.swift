@@ -45,7 +45,8 @@ public class RatesService: RatesServiceProtocol {
     
     public func fetchSavedRates(completion: @escaping (_ response: ConverterRatesResponse) -> Void) {
         
-        let rates = CoreDataClient.fetch()
-        completion(ConverterRatesResponse(rates: rates))
+        CoreDataClient.fetch { (rates) in
+            completion(ConverterRatesResponse(rates: rates))
+        }
     }
 }

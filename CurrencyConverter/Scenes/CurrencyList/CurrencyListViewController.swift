@@ -108,17 +108,6 @@ extension CurrencyListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        /*
-        let rateToSave = Rate(code: rate.code, type: .BUY, name: rate.name)
-        CoreDataClient.save(rate: rateToSave) { (error) in
-            print("ERROR: \(String(describing: error))")
-        }
-        
-        self.delegate?.updateData()
-
-        dismiss(animated: true, completion: nil)
-         */
-        
         
         let key = Array(rates.keys)[indexPath.section]
         let rate = rates[key]![indexPath.row]
@@ -127,9 +116,9 @@ extension CurrencyListViewController: UITableViewDelegate {
             return
         }
  
-        CoreDataClient.update(oldRate: selectedRate, newRate: rate)
-        
-        self.delegate?.updateData()
-        dismiss(animated: true, completion: nil)
+        CoreDataClient.update(oldRate: selectedRate, newRate: rate) {
+            self.delegate?.updateData()
+            self.dismiss(animated: true, completion: nil)
+        }
     }
 }
