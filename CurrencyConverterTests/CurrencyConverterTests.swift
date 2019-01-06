@@ -13,9 +13,14 @@ import CoreData
 class CurrencyConverterTests: XCTestCase {
 
     private var view: MockView!
-
+    private var viewModel: ConverterViewModel!
+    private var service: MockRatesService!
+    
     override func setUp() {
+        service = MockRatesService()
+        viewModel = ConverterViewModel(service: service)
         view = MockView()
+        viewModel.delegate = view
     }
 
     override func tearDown() {
@@ -42,13 +47,76 @@ class CurrencyConverterTests: XCTestCase {
         XCTAssertFalse(view.check(string: ",2"))
     }
     
+    func testLoad() {
+        //Given
+        let rate1 = Rate(id: "0", value: 12.0, code: "USD", type: .BUY, name: "United State Dollars")
+        let rate2 = Rate(id: "1", value: 13.0, code: "EUR", type: .SELL, name: "Euro")
+
+        service.ratesFromService = ["USD": 12.0, "EUR": 13.0]
+        service.rates = [rate1, rate2]
+        //When
+        viewModel.load()
+        //Then
+        XCTAssertEqual(view.outputs.count, 4)
+        
+        switch view.outputs[0] {
+        case .updateTitle(_):
+            break // Success!
+        default:
+            XCTFail("First output should be `updateTitle`.")
+        }
+        
+        XCTAssertEqual(view.outputs[1], .showLoading(true))
+        XCTAssertEqual(view.outputs[2], .showLoading(false))
+        
+        switch view.outputs[3] {
+        case .showConverterRates(let presentation):
+            let expectedPresentation = ConverterRatesPresentation(rates: [rate1, rate2])
+            XCTAssertEqual(presentation.rates, expectedPresentation.rates)
+        break // Success!
+        default:
+            XCTFail("First output should be `updateTitle`.")
+        }
+    }
+    
+    func testUpdateSavedCurrencies() {
+        
+        //Given
+        let rate1 = Rate(id: "0", value: 12.0, code: "USD", type: .BUY, name: "United State Dollars")
+        let rate2 = Rate(id: "1", value: 13.0, code: "EUR", type: .SELL, name: "Euro")
+        
+        service.ratesFromService = ["USD": 12.0, "EUR": 13.0]
+        service.rates = [rate1, rate2]
+        viewModel.load()
+        
+        //When
+        let rate = Rate(id: "1", value: 13.0, code: "EUR", type: .SELL, name: "Euro")
+        viewModel.updateSavedCurrencies(with: .SELL, isUpdating: true, selectedRate: rate)
+
+        //Then
+        XCTAssertTrue(view.currencyListRouteCalled)
+    }
 }
 
 class MockView: ConverterViewModelDelegate {
 
-    func handleViewModelOutput(_ output: ConverterViewModelOutput) { }
+    var outputs: [ConverterViewModelOutput] = []
+    var currencyListRouteCalled = false
 
-    func navigate(to route: ConverterViewRoute) { }
+    func handleViewModelOutput(_ output: ConverterViewModelOutput) {
+        outputs.append(output)
+    }
+
+    func navigate(to route: ConverterViewRoute) {
+        
+        switch route {
+        case .currencyList(_):
+            currencyListRouteCalled = true
+            break
+        default:
+            break
+        }
+    }
 
     func check(string: String) -> Bool {
         
@@ -75,3 +143,16 @@ class MockView: ConverterViewModelDelegate {
     }
 }
 
+class MockRatesService: RatesServiceProtocol {
+    
+    var ratesFromService: [String: Double] = [:]
+    var rates: [Rate] = []
+    
+    func fetchLatestRates(base: String, completion: @escaping (Result<LatestRatesResponse>) -> Void) {
+        completion(.success(LatestRatesResponse(date: "", base: "", rates: ratesFromService)))
+    }
+
+    func fetchSavedRates(completion: @escaping (ConverterRatesResponse) -> Void) {
+        completion(ConverterRatesResponse(rates: rates))
+    }
+}

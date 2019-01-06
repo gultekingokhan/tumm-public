@@ -21,9 +21,11 @@ final class ConverterViewModel: ConverterViewModelProtocol {
     
     func load() {
         notify(.updateTitle("Tumm"))
+        notify(.showLoading(true))
         
-        service.fetchSavedRates { (response) in
-   
+        service.fetchSavedRates { [weak self] (response) in
+            guard let self = self else { return }
+
             var _rates: [Rate] = []
             
             if response.rates.count == 0 {
@@ -34,9 +36,6 @@ final class ConverterViewModel: ConverterViewModelProtocol {
                 
             } else {
                 _rates = response.rates
-                
-                let presentation = ConverterRatesPresentation(rates: _rates)
-                self.notify(.showConverterRates(presentation))
             }
 
             var base = ""
@@ -46,12 +45,14 @@ final class ConverterViewModel: ConverterViewModelProtocol {
             }
             
             if base.count == 0 { base = (_rates.first?.code)! }
-            
-            self.fetchLatestRates(base: base, completion: { (success) in
-                
-                self.notify(.showLoading(false))
 
-                if success {
+            self.service.fetchLatestRates(base: base) { (result) in
+                self.notify(.showLoading(false))
+                
+                switch result {
+                case .success(let response):
+                    
+                    self.latestRates = response.rates
                     
                     _ = self.update(rates: _rates)
                     
@@ -59,8 +60,11 @@ final class ConverterViewModel: ConverterViewModelProtocol {
                     let presentation = ConverterRatesPresentation(rates: _rates)
                     self.notify(.showConverterRates(presentation))
 
-                } else { /* TODO: Handle this. */ }
-            })
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            return
         }
     }
     
@@ -76,29 +80,6 @@ final class ConverterViewModel: ConverterViewModelProtocol {
         }
         let presentation = ConverterRatesPresentation(rates: _rates)
         self.notify(.showUpdatedRates(presentation))
-    }
-    
-    private func fetchLatestRates(base: String, completion: @escaping(_ success: Bool) ->Void) {
-
-        notify(.showLoading(true))
-        
-        let ratesService = RatesService()
-        
-        ratesService.fetchLatestRates(base: base) { (result) in
-            self.notify(.showLoading(false))
-            
-            switch result {
-            case .success(let response):
-
-                self.latestRates = response.rates
-        
-                completion(true)
-
-            case .failure(let error):
-                print(error)
-                completion(false)
-            }
-        }
     }
     
     private func update(rates: [Rate]) -> [Rate] {

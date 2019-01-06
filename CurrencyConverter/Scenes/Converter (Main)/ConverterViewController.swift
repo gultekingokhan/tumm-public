@@ -72,7 +72,7 @@ extension ConverterViewController: ConverterViewModelDelegate {
             } else {
                 viewModel.updateRateValues(value: 0)
             }
-            
+            print("TEXT: \(text)")
             return true
         } else { return false }
     }

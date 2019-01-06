@@ -15,7 +15,7 @@ protocol ConverterViewModelProtocol {
     func updateRateValues(value: Double)
 }
 
-enum ConverterViewModelOutput {
+enum ConverterViewModelOutput: Equatable {
     case updateTitle(String)
     case showLoading(Bool)
     case showLatestRates(ConverterPresentation)
