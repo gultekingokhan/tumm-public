@@ -62,6 +62,7 @@ final class ConverterViewModel: ConverterViewModelProtocol {
 
                 case .failure(let error):
                     print(error)
+                    self.notify(.showErrorAlertView())
                 }
             }
             return

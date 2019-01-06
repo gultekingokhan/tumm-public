@@ -92,6 +92,13 @@ extension ConverterViewController: ConverterViewModelDelegate {
         case .showUpdatedRates(let presentation):
             self.rates = presentation.rates
             self.tableView.reloadSections([1], with: .none)
+        case .showErrorAlertView:
+            let alertController = UIAlertController(title: "Error", message: "An error occured while fetching latest rates", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Try again", style: .default, handler: { (_) in
+                self.viewModel.load()
+            })
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
         }
     }
     

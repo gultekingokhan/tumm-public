@@ -21,6 +21,7 @@ enum ConverterViewModelOutput: Equatable {
     case showLatestRates(ConverterPresentation)
     case showConverterRates(ConverterRatesPresentation)
     case showUpdatedRates(ConverterRatesPresentation)
+    case showErrorAlertView()
 }
 
 enum ConverterViewRoute {
