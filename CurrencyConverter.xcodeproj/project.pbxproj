@@ -358,8 +358,8 @@
 			isa = PBXGroup;
 			children = (
 				7656AC7F21C24BFB00A93A50 /* CurrencyConverterTests.swift */,
-				768204C921CBC330007FDE58 /* CountryListTests.swift */,
 				7696789521E27C8000AD66C1 /* CurrencyListTests.swift */,
+				768204C921CBC330007FDE58 /* CountryListTests.swift */,
 				7656AC8121C24BFB00A93A50 /* Info.plist */,
 			);
 			path = CurrencyConverterTests;

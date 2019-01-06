@@ -26,7 +26,7 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
         self.selectedRate = selectedRate
     }
     
-    func load(base: String) {
+    func load() {
 
         if rateType == .BUY { themeColor = UIColor.purpleishPink }
         
@@ -34,7 +34,7 @@ final class CurrencyListViewModel: CurrencyListViewModelProtocol {
         notify(.updateTitle("Choose your \(rateTypeLowercased) currency"))
         notify(.showLoading(true))
         
-        service.fetchLatestRates(base: base) { (result) in
+        service.fetchLatestRates(base: "USD") { (result) in
             self.notify(.showLoading(false))
             
             switch result {

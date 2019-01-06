@@ -12,14 +12,14 @@ import CoreData
 
 class CurrencyConverterTests: XCTestCase {
 
-    private var view: MockView!
+    private var view: MockConverterView!
     private var viewModel: ConverterViewModel!
     private var service: MockRatesService!
     
     override func setUp() {
         service = MockRatesService()
         viewModel = ConverterViewModel(service: service)
-        view = MockView()
+        view = MockConverterView()
         viewModel.delegate = view
     }
 
@@ -98,7 +98,7 @@ class CurrencyConverterTests: XCTestCase {
     }
 }
 
-class MockView: ConverterViewModelDelegate {
+class MockConverterView: ConverterViewModelDelegate {
 
     var outputs: [ConverterViewModelOutput] = []
     var currencyListRouteCalled = false
@@ -149,7 +149,7 @@ class MockRatesService: RatesServiceProtocol {
     var rates: [Rate] = []
     
     func fetchLatestRates(base: String, completion: @escaping (Result<LatestRatesResponse>) -> Void) {
-        completion(.success(LatestRatesResponse(date: "", base: "", rates: ratesFromService)))
+        completion(.success(LatestRatesResponse(date: "", base: "USD", rates: ratesFromService)))
     }
 
     func fetchSavedRates(completion: @escaping (ConverterRatesResponse) -> Void) {

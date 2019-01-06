@@ -14,11 +14,11 @@ protocol CurrencyListViewModelProtocol {
     var isUpdating: Bool { get set }
     var selectedRate: Rate? { get set } 
     var delegate: CurrencyListViewModelDelegate? { get set }
-    func load(base: String)
+    func load()
     func actionButtonTapped(rate: Rate, completion: @escaping(_ isAdded: Bool) -> Void)
 }
 
-enum CurrencyListViewModelOutput {
+enum CurrencyListViewModelOutput: Equatable {
     case updateTitle(String)
     case showLoading(Bool)
     case showLatestRates(CurrencyListPresentation)

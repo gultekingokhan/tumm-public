@@ -31,7 +31,7 @@ final class CurrencyListViewController: UIViewController {
         navigationController?.navigationBar.customize(supportsLargeTitle: false)
         addDismissButton()
 
-        viewModel.load(base: "SEK")
+        viewModel.load()
     }
 }
 
@@ -91,7 +91,6 @@ extension CurrencyListViewController: UITableViewDataSource {
                 self.delegate?.updateData()
             })
         }
-
         return cell
     }
 }
